@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import BlogCard from '../molecules/BlogCard.astro';
+import type { Locale } from '../../i18n/ui';
+import { t } from '../../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const posts = (await getCollection('blog', ({ data }) => data.lang === locale))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const blogBase = locale === 'es' ? '/blog' : '/en/blog';
+const homeUrl = locale === 'es' ? '/' : '/en/';
+---
+
+<section class="blog-archive">
+  <header>
+    <h1>{t(locale, 'blog.allTitle')}</h1>
+    <p class="intro">{t(locale, 'blog.allIntro')}</p>
+  </header>
+
+  <div class="post-list">
+    {
+      posts.map((post) => (
+        <BlogCard
+          locale={locale}
+          url={`${blogBase}/${post.data.slug}/`}
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+          readingTime={post.data.readingTime}
+          tags={post.data.tags}
+        />
+      ))
+    }
+  </div>
+
+  <footer>
+    <a href={`${homeUrl}#blog`}>← {t(locale, 'blog.backToHome')}</a>
+  </footer>
+</section>
+
+<style>
+  .blog-archive {
+    padding-block-start: 3rem;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 4.5vw, 2.25rem);
+    margin-block: 0 0.5rem;
+  }
+
+  .intro {
+    color: var(--color-text-muted);
+    max-width: 38rem;
+    margin-block-end: 2.5rem;
+  }
+
+  .post-list {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  footer {
+    margin-block-start: 3rem;
+  }
+</style>

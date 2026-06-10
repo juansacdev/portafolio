@@ -16,9 +16,11 @@ interface Props {
 const { locale, url, title, description, pubDate, readingTime, tags } =
   Astro.props;
 
+// timeZone UTC: frontmatter dates parse as UTC midnight; formatting in a
+// negative-offset zone would shift them one day back.
 const formattedDate = pubDate.toLocaleDateString(
   locale === 'es' ? 'es-CO' : 'en-US',
-  { year: 'numeric', month: 'long', day: 'numeric' }
+  { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }
 );
 ---
 

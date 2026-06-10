@@ -10,7 +10,7 @@ const { id, icon } = Astro.props;
 ---
 
 <h2 class="section-title" id={id}>
-  {icon && <Icon name={icon} />}
+  {icon && <Icon name={icon} size={27} />}
   <slot />
 </h2>
 

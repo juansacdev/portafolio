@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogArchive from '../../../components/organisms/BlogArchive.astro';
+import { t } from '../../../i18n/ui';
+import { identity } from '../../../data/profile';
+---
+
+<BaseLayout
+  locale="en"
+  title={`${t('en', 'blog.allTitle')} — ${identity.name}`}
+  description={t('en', 'blog.allIntro')}
+  altUrl="/blog/"
+>
+  <BlogArchive locale="en" />
+</BaseLayout>

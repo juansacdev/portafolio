@@ -11,8 +11,13 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const posts = (await getCollection('blog', ({ data }) => data.lang === locale))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const LATEST_COUNT = 3;
+
+const allPosts = (
+  await getCollection('blog', ({ data }) => data.lang === locale)
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const posts = allPosts.slice(0, LATEST_COUNT);
 
 const blogBase = locale === 'es' ? '/blog' : '/en/blog';
 ---
@@ -37,6 +42,10 @@ const blogBase = locale === 'es' ? '/blog' : '/en/blog';
       ))
     }
   </div>
+
+  <a class="view-all" href={`${blogBase}/`}>
+    {t(locale, 'blog.viewAll')} →
+  </a>
 </section>
 
 <style>
@@ -47,5 +56,27 @@ const blogBase = locale === 'es' ? '/blog' : '/en/blog';
   .post-list {
     display: grid;
     gap: 1.25rem;
+  }
+
+  .view-all {
+    display: inline-flex;
+    align-items: center;
+    margin-block-start: 1.5rem;
+    padding: 0.28rem 0.9rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background-color: var(--color-button-bg);
+    color: var(--color-text);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease,
+      border-color 0.15s ease;
+  }
+
+  .view-all:hover {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    border-color: transparent;
   }
 </style>

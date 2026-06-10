@@ -22,6 +22,10 @@ export const ui = {
     'blog.readMore': 'Leer el post',
     'blog.backToHome': 'Volver al inicio',
     'blog.published': 'Publicado el',
+    'blog.viewAll': 'Ver todos los posts',
+    'blog.allTitle': 'Todos los posts',
+    'blog.allIntro':
+      'Explainers de "cómo funciona X por detrás": los internals que me dan curiosidad, contados como me hubiera gustado que me los contaran.',
     'contact.intro':
       '¿Quieres hablar de un rol, un proyecto o un post? Escríbeme.',
     'footer.builtWith': 'Hecho con ❤️',
@@ -48,6 +52,10 @@ export const ui = {
     'blog.readMore': 'Read the post',
     'blog.backToHome': 'Back to home',
     'blog.published': 'Published on',
+    'blog.viewAll': 'View all posts',
+    'blog.allTitle': 'All posts',
+    'blog.allIntro':
+      'Explainers on "how X works under the hood": the internals I am curious about, told the way I wish someone had told me.',
     'contact.intro':
       'Want to talk about a role, a project, or a post? Reach out.',
     'footer.builtWith': 'Built with ❤️',
