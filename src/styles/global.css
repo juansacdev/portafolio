@@ -24,7 +24,7 @@
     monospace;
 
   --max-width: 44rem;
-  --space-section: clamp(5rem, 11vw, 8.5rem);
+  --space-section: clamp(5rem, 11vw, 7.5rem);
   /* The hero keeps the original (pre-widening) top spacing. */
   --space-hero: clamp(3.5rem, 8vw, 6rem);
 }
