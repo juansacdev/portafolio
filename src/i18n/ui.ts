@@ -9,9 +9,11 @@ export const ui = {
     'nav.blog': 'Blog',
     'nav.about': 'Sobre mí',
     'nav.label': 'Navegación principal',
-    'theme.toggle': 'Cambiar entre modo claro y oscuro',
+    'theme.toggle': 'Cambiar tema: sistema, claro u oscuro',
     'lang.switch': 'Switch to English',
     'lang.switchShort': 'EN',
+    'hero.available': 'Disponible para trabajar',
+    'contact.cta': 'Contáctame',
     'section.experience': 'Experiencia',
     'section.projects': 'Proyectos',
     'section.blog': 'Blog',
@@ -22,7 +24,7 @@ export const ui = {
     'blog.published': 'Publicado el',
     'contact.intro':
       '¿Quieres hablar de un rol, un proyecto o un post? Escríbeme.',
-    'footer.builtWith': 'Hecho con Astro. Sin trackers, sin cookies.',
+    'footer.builtWith': 'Hecho con ❤️',
     'a11y.avatarAlt': 'Avatar de Juan Sebastián Agudelo',
   },
   en: {
@@ -33,9 +35,11 @@ export const ui = {
     'nav.blog': 'Blog',
     'nav.about': 'About',
     'nav.label': 'Main navigation',
-    'theme.toggle': 'Toggle between light and dark mode',
+    'theme.toggle': 'Change theme: system, light, or dark',
     'lang.switch': 'Cambiar a español',
     'lang.switchShort': 'ES',
+    'hero.available': 'Open to work',
+    'contact.cta': 'Contact me',
     'section.experience': 'Experience',
     'section.projects': 'Projects',
     'section.blog': 'Blog',
@@ -46,7 +50,7 @@ export const ui = {
     'blog.published': 'Published on',
     'contact.intro':
       'Want to talk about a role, a project, or a post? Reach out.',
-    'footer.builtWith': 'Built with Astro. No trackers, no cookies.',
+    'footer.builtWith': 'Built with ❤️',
     'a11y.avatarAlt': 'Avatar of Juan Sebastián Agudelo',
   },
 } as const satisfies Record<Locale, Record<string, string>>;

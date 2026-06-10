@@ -8,6 +8,19 @@ const { label } = Astro.props;
 
 <button type="button" class="theme-toggle" aria-label={label} title={label}>
   <svg
+    class="icon-system"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+    <path d="M8 21h8m-4-4v4"></path>
+  </svg>
+  <svg
     class="icon-sun"
     viewBox="0 0 24 24"
     fill="none"
@@ -36,20 +49,28 @@ const { label } = Astro.props;
 </button>
 
 <script>
-  function setupThemeToggle() {
-    const buttons = document.querySelectorAll<HTMLButtonElement>('.theme-toggle');
+  // Cycle: system → light → dark → system. The inline script in the layout
+  // owns the resolution logic and exposes it as window.applyTheme.
+  const CYCLE: Record<string, string> = {
+    system: 'light',
+    light: 'dark',
+    dark: 'system',
+  };
 
-    for (const button of buttons) {
-      button.addEventListener('click', () => {
-        const current = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
-        const next = current === 'dark' ? 'light' : 'dark';
-        document.documentElement.dataset.theme = next;
-        localStorage.setItem('theme', next);
-      });
-    }
+  for (const button of document.querySelectorAll<HTMLButtonElement>('.theme-toggle')) {
+    button.addEventListener('click', () => {
+      const current = document.documentElement.dataset.themeMode ?? 'system';
+      const next = CYCLE[current] ?? 'system';
+
+      if (next === 'system') {
+        localStorage.removeItem('theme-mode');
+      } else {
+        localStorage.setItem('theme-mode', next);
+      }
+
+      (window as Window & { applyTheme?: () => void }).applyTheme?.();
+    });
   }
-
-  setupThemeToggle();
 </script>
 
 <style>
@@ -57,37 +78,43 @@ const { label } = Astro.props;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 1.9rem;
+    height: 1.9rem;
     padding: 0;
     border: 1px solid var(--color-border);
-    border-radius: 8px;
-    background-color: var(--color-surface);
+    border-radius: 999px;
+    background-color: var(--color-button-bg);
     color: var(--color-text);
     cursor: pointer;
-    transition: border-color 0.15s ease, color 0.15s ease;
+    transition: background-color 0.15s ease, color 0.15s ease,
+      border-color 0.15s ease;
   }
 
   .theme-toggle:hover {
-    color: var(--color-accent-strong);
-    border-color: var(--color-accent);
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    border-color: transparent;
   }
 
   .theme-toggle svg {
-    width: 1.15rem;
-    height: 1.15rem;
+    width: 1rem;
+    height: 1rem;
   }
 
-  /* Show the icon of the theme you would switch TO. */
-  .icon-sun {
+  /* Show only the icon of the current mode. */
+  svg {
     display: none;
   }
 
-  :global([data-theme='dark']) .icon-sun {
+  :global([data-theme-mode='system']) .icon-system {
     display: block;
   }
 
-  :global([data-theme='dark']) .icon-moon {
-    display: none;
+  :global([data-theme-mode='light']) .icon-sun {
+    display: block;
+  }
+
+  :global([data-theme-mode='dark']) .icon-moon {
+    display: block;
   }
 </style>

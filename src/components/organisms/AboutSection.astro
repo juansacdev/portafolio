@@ -3,6 +3,7 @@ import SectionTitle from '../atoms/SectionTitle.astro';
 import type { Locale } from '../../i18n/ui';
 import { t, anchors } from '../../i18n/ui';
 import { content } from '../../data/profile';
+import { emphasize } from '../../utils/emphasize';
 
 interface Props {
   locale: Locale;
@@ -13,11 +14,11 @@ const { about } = content[locale];
 ---
 
 <section class="about" aria-labelledby={anchors[locale].about}>
-  <SectionTitle id={anchors[locale].about}>
+  <SectionTitle id={anchors[locale].about} icon="user">
     {t(locale, 'section.about')}
   </SectionTitle>
 
-  {about.map((paragraph) => <p>{paragraph}</p>)}
+  {about.map((paragraph) => <p set:html={emphasize(paragraph)} />)}
 </section>
 
 <style>
@@ -27,5 +28,10 @@ const { about } = content[locale];
 
   p {
     max-width: 40rem;
+  }
+
+  p :global(strong) {
+    color: var(--color-accent);
+    font-weight: 600;
   }
 </style>

@@ -11,10 +11,10 @@ Sitio personal bilingüe (ES/EN) construido con [Astro](https://astro.build). Es
 ## Comandos
 
 ```sh
-npm install      # instalar dependencias
-npm run dev      # dev server en localhost:4321
-npm run build    # build estático en ./dist
-npm run preview  # servir el build localmente
+pnpm install   # instalar dependencias
+pnpm dev       # dev server en localhost:4321
+pnpm build     # build estático en ./dist
+pnpm preview   # servir el build localmente
 ```
 
 ## Arquitectura
@@ -38,6 +38,6 @@ src/
 ## Decisiones
 
 - **i18n por rutas**: español en `/`, inglés en `/en/`. El botón de idioma navega a la página equivalente en el otro idioma (`hreflang` incluido en el `<head>`).
-- **Tema claro/oscuro**: un script inline en el `<head>` resuelve el tema antes del primer paint (evita el flash). Prioridad: `localStorage` → `prefers-color-scheme`. Con JS deshabilitado, un bloque `@media` honra la preferencia del sistema.
+- **Tema con 3 modos**: sistema (default, sigue el OS en vivo vía `matchMedia`), claro y oscuro. Un script inline en el `<head>` resuelve el tema antes del primer paint (evita el flash) y guarda la elección explícita en `localStorage`. Con JS deshabilitado, un bloque `@media` honra la preferencia del sistema.
 - **Blog**: content collections con frontmatter tipado (Zod). Cada post declara su `slug` y el `translationSlug` de su versión en el otro idioma.
 - **HTML semántico**: `header`, `nav`, `main`, `section`, `article`, `address`, `time`, `footer`. Sin div-soup.

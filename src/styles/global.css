@@ -14,6 +14,9 @@
   --color-border: #e5e1dc;
   --color-tag-bg: #eef4f3;
   --color-tag-text: #095456;
+  --color-button-bg: #ffffff;
+  --color-available: #15803d;
+  --color-available-bg: #ecfdf3;
 
   --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
     Arial, sans-serif;
@@ -36,6 +39,9 @@
   --color-border: #2c2c2c;
   --color-tag-bg: #1f2e2e;
   --color-tag-text: #8fd9db;
+  --color-button-bg: #262626;
+  --color-available: #4ade80;
+  --color-available-bg: #122a1c;
 }
 
 /* Fallback when JavaScript is disabled: honor the OS preference.
@@ -54,6 +60,9 @@
     --color-border: #2c2c2c;
     --color-tag-bg: #1f2e2e;
     --color-tag-text: #8fd9db;
+    --color-button-bg: #262626;
+    --color-available: #4ade80;
+    --color-available-bg: #122a1c;
   }
 }
 
@@ -69,6 +78,16 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  /* Smooth only anchor/programmatic jumps; wheel and trackpad scrolling
+     are untouched. The padding keeps sections clear of the sticky header. */
+  scroll-behavior: smooth;
+  scroll-padding-block-start: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {

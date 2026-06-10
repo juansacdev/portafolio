@@ -31,17 +31,24 @@ const currentPath = Astro.url.pathname;
     <title>{title}</title>
 
     <!-- Theme resolution before first paint, to avoid a flash of the wrong
-         theme. localStorage wins; otherwise the OS preference applies. -->
+         theme. Three modes: 'system' (default, follows the OS live),
+         'light', and 'dark'. The resolved theme lands in data-theme; the
+         chosen mode in data-theme-mode (used by the toggle icon). -->
     <script is:inline>
       (() => {
-        const stored = localStorage.getItem('theme');
-        const theme =
-          stored === 'dark' || stored === 'light'
-            ? stored
-            : window.matchMedia('(prefers-color-scheme: dark)').matches
-              ? 'dark'
-              : 'light';
-        document.documentElement.dataset.theme = theme;
+        const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+        const apply = () => {
+          const stored = localStorage.getItem('theme-mode');
+          const mode = stored === 'dark' || stored === 'light' ? stored : 'system';
+          const theme = mode === 'system' ? (media.matches ? 'dark' : 'light') : mode;
+          document.documentElement.dataset.themeMode = mode;
+          document.documentElement.dataset.theme = theme;
+        };
+
+        apply();
+        media.addEventListener('change', apply);
+        window.applyTheme = apply;
       })();
     </script>
   </head>

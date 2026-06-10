@@ -17,7 +17,7 @@ const year = new Date().getFullYear();
     <section aria-labelledby={anchors[locale].contact}>
       <h2 id={anchors[locale].contact}>{t(locale, 'section.contact')}</h2>
       <p>{t(locale, 'contact.intro')}</p>
-      <ContactLinks />
+      <ContactLinks locale={locale} />
     </section>
 
     <p class="colophon">

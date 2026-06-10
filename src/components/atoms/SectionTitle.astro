@@ -1,12 +1,18 @@
 ---
+import Icon from './Icon.astro';
+
 interface Props {
   id?: string;
+  icon?: 'briefcase' | 'code' | 'pen' | 'user' | 'mail';
 }
 
-const { id } = Astro.props;
+const { id, icon } = Astro.props;
 ---
 
-<h2 class="section-title" id={id}><slot /></h2>
+<h2 class="section-title" id={id}>
+  {icon && <Icon name={icon} />}
+  <slot />
+</h2>
 
 <style>
   .section-title {
@@ -15,6 +21,10 @@ const { id } = Astro.props;
     display: flex;
     align-items: center;
     gap: 0.75rem;
+  }
+
+  .section-title :global(.icon) {
+    color: var(--color-accent);
   }
 
   .section-title::after {

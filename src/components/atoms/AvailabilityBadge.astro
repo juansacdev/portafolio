@@ -1,0 +1,67 @@
+---
+import type { Locale } from '../../i18n/ui';
+import { t } from '../../i18n/ui';
+import { identity } from '../../data/profile';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<a
+  class="availability"
+  href={identity.linkedin}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <span class="dot" aria-hidden="true"></span>
+  {t(locale, 'hero.available')}
+</a>
+
+<style>
+  .availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.25rem 0.8rem;
+    border-radius: 999px;
+    background-color: var(--color-available-bg);
+    color: var(--color-available);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: border-color 0.15s ease;
+  }
+
+  .availability:hover {
+    color: var(--color-available);
+    border-color: var(--color-available);
+  }
+
+  .dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background-color: var(--color-available);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dot {
+      animation: none;
+    }
+  }
+</style>
