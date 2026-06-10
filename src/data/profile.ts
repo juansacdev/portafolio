@@ -54,9 +54,9 @@ export const content: Record<Locale, LocalizedContent> = {
   es: {
     hero: {
       title: 'Hey, soy **Juanse**',
-      role: 'Software Engineer · Backend, Data & AI',
+      role: 'Software Engineer · Distributed Systems & Architecture · AI/ML',
       tagline: [
-        '**+6 años de experiencia.** Software engineer enfocado en **sistemas distribuidos**, arquitectura de software, y diseño y escalamiento de sistemas. **Ledger y Fintech**.',
+        '**+6 años de experiencia.** Software engineer enfocado en **arquitectura, diseño y escalamiento de sistemas distribuidos**. **Ledger y Fintech**.',
         'Construyo **sistemas y workflows robustos** que mueven **dinero real**.',
         'Escribo sobre lo que voy aprendiendo en el camino y sobre **cómo funcionan las cosas por detrás**.',
       ],
@@ -136,19 +136,19 @@ export const content: Record<Locale, LocalizedContent> = {
     ],
     about: [
       'Me llamo Juan Sebastián Agudelo, pero puedes llamarme **Juanse**. Empecé a programar a los **19 años**, haciendo un pivot a mi vida: era estudiante becado de finanzas. La **curiosidad** ha marcado mi vida desde siempre, y fue lo que me motivó a aprender programación de manera autodidacta.',
-      'He trabajado para startups y grandes compañías. Entre mis éxitos: fui parte —y lideré— un equipo pequeño (4~6 devs) que desarrolló una stablecoin (**COPM**) con peg 1:1 sobre las redes de Polygon y Celo. Movió **más de $200M** en volumen transaccional en un solo mes (ese fue el peak) y **casi $2B** en total, sin ningún incidente y de manera segura.',
+      'He trabajado para startups y grandes compañías. Entre mis éxitos: fui parte de —y lideré— un equipo pequeño (4~6 devs) que desarrolló una stablecoin (**COPM**) con peg 1:1 sobre las redes de Polygon y Celo. Movió **más de $200M** en volumen transaccional en un solo mes (ese fue el peak) y **casi $2B** en total, sin ningún incidente y de manera segura.',
       'Escribo sobre lo que aprendo en el camino, porque *[enseñar es aprender dos veces](https://es.wikiquote.org/wiki/Joseph_Joubert)*.',
       'Creo profundamente en la educación continua, sea de la forma que sea —formal, en línea o autodidacta—, como manera de seguir creciendo a nivel personal y profesional.',
-      'Creo firmemente en que el futuro siempre será mejor. Es la única manera de construir el futuro.',
+      'Creo firmemente en que el futuro siempre será mejor. Es la única manera de construirlo.',
       '*Muss es sein?* *Es muss sein!*',
     ],
   },
   en: {
     hero: {
       title: "Hey, I'm **Juanse**",
-      role: 'Software Engineer · Backend, Data & AI',
+      role: 'Software Engineer · Distributed Systems & Architecture · AI/ML',
       tagline: [
-        '**+6 years of experience.** Software engineer focused on **distributed systems**, software architecture, and systems design and scaling. **Ledgers and Fintech**.',
+        '**+6 years of experience.** Software engineer focused on the **architecture, design, and scaling of distributed systems**. **Ledgers and Fintech**.',
         'I build **robust systems and workflows** that move **real money**.',
         'I write about what I learn along the way and about **how things work under the hood**.',
       ],
@@ -231,7 +231,7 @@ export const content: Record<Locale, LocalizedContent> = {
       'I have worked for startups and large companies. Among my wins: I was part of —and led— a small team (4~6 devs) that built a stablecoin (**COPM**) with a 1:1 peg on Polygon and Celo. It moved **over $200M** in transactional volume in a single month (that was the peak) and **almost $2B** in total, without a single incident and securely.',
       'I write about what I learn along the way, because *[to teach is to learn twice](https://en.wikiquote.org/wiki/Joseph_Joubert)*.',
       'I deeply believe in continuous education in every form —formal, online, or self-taught— as the way to keep growing both personally and professionally.',
-      'I firmly believe the future will always be better. It is the only way to build the future.',
+      'I firmly believe the future will always be better. It is the only way to build it.',
       '*Muss es sein?* *Es muss sein!*',
     ],
   },
