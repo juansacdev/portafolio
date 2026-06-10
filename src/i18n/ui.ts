@@ -25,7 +25,7 @@ export const ui = {
     'blog.viewAll': 'Ver todos los posts',
     'blog.allTitle': 'Todos los posts',
     'blog.allIntro':
-      'Explainers de "cómo funciona X por detrás": los internals que me dan curiosidad, contados como me hubiera gustado que me los contaran.',
+      'Explainers de "cómo funciona X por detrás": los internals que me dan curiosidad, explicados como me hubiera gustado que me los explicaran.',
     'contact.intro':
       '¿Quieres hablar de un rol, un proyecto o un post? Escríbeme.',
     'footer.builtWith': 'Hecho con ❤️',
@@ -55,7 +55,7 @@ export const ui = {
     'blog.viewAll': 'View all posts',
     'blog.allTitle': 'All posts',
     'blog.allIntro':
-      'Explainers on "how X works under the hood": the internals I am curious about, told the way I wish someone had told me.',
+      'Explainers on "how X works under the hood": the internals I am curious about, explained the way I wish someone had explained them to me.',
     'contact.intro':
       'Want to talk about a role, a project, or a post? Reach out.',
     'footer.builtWith': 'Built with ❤️',

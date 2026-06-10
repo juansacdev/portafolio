@@ -42,13 +42,14 @@ const { entry } = Astro.props;
     padding-block-end: 0.5rem;
   }
 
+  /* 16px dot whose center (x = 1px) matches the center of the 2px rail. */
   .experience-item::before {
     content: '';
     position: absolute;
-    inset-inline-start: -10px;
+    inset-inline-start: -7px;
     inset-block-start: 0.25rem;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     background-color: var(--color-accent);
     border: 3px solid var(--color-bg);

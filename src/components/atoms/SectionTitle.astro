@@ -10,7 +10,7 @@ const { id, icon } = Astro.props;
 ---
 
 <h2 class="section-title" id={id}>
-  {icon && <Icon name={icon} size={27} />}
+  {icon && <Icon name={icon} size={25} />}
   <slot />
 </h2>
 
@@ -27,10 +27,11 @@ const { id, icon } = Astro.props;
     color: var(--color-accent);
   }
 
+  /* Same soft fade as the navbar line, but only toward the right edge. */
   .section-title::after {
     content: '';
     flex: 1;
     height: 1px;
-    background-color: var(--color-border);
+    background: linear-gradient(to right, var(--color-border), transparent);
   }
 </style>
