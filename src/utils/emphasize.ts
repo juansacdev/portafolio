@@ -1,7 +1,12 @@
 /**
- * Converts `**text**` markers in plain strings into <strong> tags,
- * escaping any HTML first. Used with set:html to colorize key phrases
- * without storing raw HTML in the content data.
+ * Converts lightweight markers in plain strings into HTML, escaping any
+ * HTML first. Used with set:html to enrich content data without storing
+ * raw HTML in it.
+ *
+ * Supported markers:
+ *   **text**      → <strong> (accent-colored via component CSS)
+ *   *text*        → <em>
+ *   [text](url)   → <a> (opens in a new tab)
  */
 export function emphasize(text: string): string {
   const escaped = text
@@ -9,5 +14,11 @@ export function emphasize(text: string): string {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
 
-  return escaped.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  return escaped
+    .replace(
+      /\[([^\]]+)\]\(([^)]+)\)/g,
+      '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
+    )
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>');
 }

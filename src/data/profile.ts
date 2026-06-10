@@ -56,8 +56,8 @@ export const content: Record<Locale, LocalizedContent> = {
       title: 'Hey, soy **Juanse**',
       role: 'Software Engineer · Backend, Data & AI',
       tagline: [
-        'Construyo sistemas que mueven **dinero real**. Y escribo sobre **cómo funcionan por detrás**.',
-        '**+6 años** en backend y sistemas distribuidos — los últimos 4 en **fintech**, construyendo infraestructura de pagos para Latinoamérica.',
+        '**+6 años de experiencia.** Software engineer enfocado en **sistemas distribuidos**, arquitectura de software, y diseño y escalamiento de sistemas. **Ledger y fintech**.',
+        'Escribo sobre lo que voy aprendiendo en el camino y sobre **cómo funcionan las cosas por detrás**.',
       ],
     },
     experience: [
@@ -134,10 +134,12 @@ export const content: Record<Locale, LocalizedContent> = {
       },
     ],
     about: [
-      'Soy ingeniero de software, de Bogotá. Llevo **+6 años** construyendo backend y sistemas distribuidos.',
-      'Los últimos cuatro los pasé en fintech. Entré como junior a Minteo y salí siendo **Tech Lead**, después de construir de cero a producción la infraestructura que orquesta **+USD $200M al mes** en stablecoins reguladas. Ahí aprendí lo que ningún tutorial enseña: lo que pasa cuando el código toca dinero real.',
-      'Hoy mi foco es **data**. Me obsesiona el "cómo funciona por detrás": los ledgers, el event sourcing, las redes neuronales, los LLMs. De esa curiosidad sale el blog que estás viendo.',
-      'Trabajo **AI-first**. Diseño specs y harnesses para que agentes construyan conmigo — este portafolio incluido. Y escribo sobre lo que aprendo en el camino, porque **explicar algo es la mejor forma de entenderlo**.',
+      'Me llamo Juan Sebastián Agudelo, pero puedes llamarme **Juanse**. Empecé a programar a los **19 años**, haciendo un pivot a mi vida: era estudiante becado de finanzas. La **curiosidad** ha marcado mi vida desde siempre, y fue lo que me motivó a aprender programación de manera autodidacta.',
+      'He trabajado para startups y grandes compañías. Entre mis éxitos: fui parte —y lideré— un equipo pequeño (4~6 devs) que desarrolló una stablecoin (**COPM**) con peg 1:1 sobre las redes de Polygon y Celo. Movió **más de $200M** en volumen transaccional en un solo mes (ese fue el peak) y **casi $2B** en total, sin ningún incidente y de manera segura.',
+      'Escribo sobre lo que aprendo en el camino, porque **[enseñar es aprender dos veces](https://es.wikiquote.org/wiki/Joseph_Joubert)**.',
+      'Creo profundamente en la educación continua, sea de la forma que sea —formal, en línea o autodidacta—, como manera de seguir creciendo a nivel personal y profesional.',
+      'Creo firmemente en que el futuro siempre será mejor. Es la única manera de construir el futuro.',
+      '*Muss es sein?* *Es muss sein!*',
     ],
   },
   en: {
@@ -145,8 +147,8 @@ export const content: Record<Locale, LocalizedContent> = {
       title: "Hey, I'm **Juanse**",
       role: 'Software Engineer · Backend, Data & AI',
       tagline: [
-        'I build systems that move **real money**. And I write about **how they work under the hood**.',
-        '**+6 years** in backend and distributed systems — the last 4 in **fintech**, building payment infrastructure for Latin America.',
+        '**+6 years of experience.** Software engineer focused on **distributed systems**, software architecture, and systems design and scaling. **Ledgers and fintech**.',
+        'I write about what I learn along the way and about **how things work under the hood**.',
       ],
     },
     experience: [
@@ -223,10 +225,12 @@ export const content: Record<Locale, LocalizedContent> = {
       },
     ],
     about: [
-      "I'm a software engineer from Bogotá. I've spent **+6 years** building backend and distributed systems.",
-      'The last four were in fintech. I joined Minteo as a junior and left as **Tech Lead**, after building from zero to production the infrastructure that orchestrates **+USD $200M per month** in regulated stablecoins. That is where I learned what no tutorial teaches: what happens when your code touches real money.',
-      'Today my focus is **data**. I am obsessed with how things work under the hood: ledgers, event sourcing, neural networks, LLMs. That curiosity is where this blog comes from.',
-      'I work **AI-first**. I design specs and harnesses so agents build alongside me — this portfolio included. And I write about what I learn along the way, because **explaining something is the best way to understand it**.',
+      "My name is Juan Sebastián Agudelo, but you can call me **Juanse**. I started programming at **19**, pivoting my whole life: I was a finance student on a scholarship. **Curiosity** has shaped my life for as long as I can remember, and it is what pushed me to learn programming on my own.",
+      'I have worked for startups and large companies. Among my wins: I was part of —and led— a small team (4~6 devs) that built a stablecoin (**COPM**) with a 1:1 peg on Polygon and Celo. It moved **over $200M** in transactional volume in a single month (that was the peak) and **almost $2B** in total, without a single incident and securely.',
+      'I write about what I learn along the way, because **[to teach is to learn twice](https://en.wikiquote.org/wiki/Joseph_Joubert)**.',
+      'I deeply believe in continuous education in every form —formal, online, or self-taught— as the way to keep growing both personally and professionally.',
+      'I firmly believe the future will always be better. It is the only way to build the future.',
+      '*Muss es sein?* *Es muss sein!*',
     ],
   },
 };

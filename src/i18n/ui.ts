@@ -3,7 +3,7 @@ export type Locale = 'es' | 'en';
 export const ui = {
   es: {
     'meta.description':
-      'Juan Sebastián Agudelo — software engineer de Bogotá. Backend, sistemas distribuidos y data. Construyo sistemas que mueven dinero real y escribo sobre cómo funcionan por detrás.',
+      'Juan Sebastián Agudelo — software engineer de Bogotá. Sistemas distribuidos, arquitectura de software, ledgers y fintech. Escribo sobre cómo funcionan las cosas por detrás.',
     'nav.experience': 'Experiencia',
     'nav.projects': 'Proyectos',
     'nav.blog': 'Blog',
@@ -33,7 +33,7 @@ export const ui = {
   },
   en: {
     'meta.description':
-      'Juan Sebastián Agudelo — software engineer from Bogotá. Backend, distributed systems, and data. I build systems that move real money and write about how they work under the hood.',
+      'Juan Sebastián Agudelo — software engineer from Bogotá. Distributed systems, software architecture, ledgers, and fintech. I write about how things work under the hood.',
     'nav.experience': 'Experience',
     'nav.projects': 'Projects',
     'nav.blog': 'Blog',
