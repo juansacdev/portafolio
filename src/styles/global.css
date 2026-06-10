@@ -14,7 +14,7 @@
   --color-border: #e5e1dc;
   --color-tag-bg: #eef4f3;
   --color-tag-text: #095456;
-  --color-button-bg: #ffffff;
+  --color-button-bg: rgb(243 244 246);
   --color-available: #15803d;
   --color-available-bg: #ecfdf3;
 
@@ -39,7 +39,7 @@
   --color-border: #2c2c2c;
   --color-tag-bg: #1f2e2e;
   --color-tag-text: #8fd9db;
-  --color-button-bg: #262626;
+  --color-button-bg: rgb(31 41 55);
   --color-available: #4ade80;
   --color-available-bg: #122a1c;
 }
@@ -60,7 +60,7 @@
     --color-border: #2c2c2c;
     --color-tag-bg: #1f2e2e;
     --color-tag-text: #8fd9db;
-    --color-button-bg: #262626;
+    --color-button-bg: rgb(31 41 55);
     --color-available: #4ade80;
     --color-available-bg: #122a1c;
   }

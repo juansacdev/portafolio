@@ -21,8 +21,7 @@ const { hero } = content[locale];
   <div class="hero-text">
     <AvailabilityBadge locale={locale} />
 
-    <p class="greeting">{hero.greeting}</p>
-    <h1>{identity.name}</h1>
+    <h1 set:html={emphasize(hero.title)} />
     <p class="role">{hero.role} · {identity.location}</p>
 
     {hero.tagline.map((line) => <p class="tagline" set:html={emphasize(line)} />)}
@@ -43,15 +42,13 @@ const { hero } = content[locale];
     margin-block-end: 0.9rem;
   }
 
-  .greeting {
-    color: var(--color-accent);
-    font-weight: 600;
-    margin-block-end: 0.25rem;
-  }
-
   h1 {
     font-size: clamp(1.75rem, 5vw, 2.5rem);
     margin-block: 0 0.25rem;
+  }
+
+  h1 :global(strong) {
+    color: var(--color-accent);
   }
 
   .role {

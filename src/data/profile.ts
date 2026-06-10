@@ -19,7 +19,8 @@ export const identity = {
    ========================================================================== */
 
 export interface Hero {
-  greeting: string;
+  /** Main heading; supports **markers** for accent color. */
+  title: string;
   role: string;
   tagline: string[];
 }
@@ -52,11 +53,11 @@ export interface LocalizedContent {
 export const content: Record<Locale, LocalizedContent> = {
   es: {
     hero: {
-      greeting: 'Hola, soy Juanse.',
+      title: 'Hey, soy **Juanse**.',
       role: 'Software Engineer · Backend, Data & AI',
       tagline: [
         'Construyo sistemas que mueven **dinero real**. Y escribo sobre **cómo funcionan por detrás**.',
-        '**6+ años** en backend y sistemas distribuidos — los últimos 4 en **fintech**, construyendo infraestructura de pagos para Latinoamérica.',
+        '**+6 años** en backend y sistemas distribuidos — los últimos 4 en **fintech**, construyendo infraestructura de pagos para Latinoamérica.',
       ],
     },
     experience: [
@@ -133,7 +134,7 @@ export const content: Record<Locale, LocalizedContent> = {
       },
     ],
     about: [
-      'Soy ingeniero de software, de Bogotá. Llevo **6+ años** construyendo backend y sistemas distribuidos.',
+      'Soy ingeniero de software, de Bogotá. Llevo **+6 años** construyendo backend y sistemas distribuidos.',
       'Los últimos cuatro los pasé en fintech. Entré como junior a Minteo y salí siendo **Tech Lead**, después de construir de cero a producción la infraestructura que orquesta **+USD $200M al mes** en stablecoins reguladas. Ahí aprendí lo que ningún tutorial enseña: lo que pasa cuando el código toca dinero real.',
       'Hoy mi foco es **data**. Me obsesiona el "cómo funciona por detrás": los ledgers, el event sourcing, las redes neuronales, los LLMs. De esa curiosidad sale el blog que estás viendo.',
       'Trabajo **AI-first**. Diseño specs y harnesses para que agentes construyan conmigo — este portafolio incluido. Y escribo sobre lo que aprendo en el camino, porque **explicar algo es la mejor forma de entenderlo**.',
@@ -141,11 +142,11 @@ export const content: Record<Locale, LocalizedContent> = {
   },
   en: {
     hero: {
-      greeting: "Hi, I'm Juanse.",
+      title: "Hey, I'm **Juanse**.",
       role: 'Software Engineer · Backend, Data & AI',
       tagline: [
         'I build systems that move **real money**. And I write about **how they work under the hood**.',
-        '**6+ years** in backend and distributed systems — the last 4 in **fintech**, building payment infrastructure for Latin America.',
+        '**+6 years** in backend and distributed systems — the last 4 in **fintech**, building payment infrastructure for Latin America.',
       ],
     },
     experience: [
@@ -222,7 +223,7 @@ export const content: Record<Locale, LocalizedContent> = {
       },
     ],
     about: [
-      "I'm a software engineer from Bogotá. I've spent **6+ years** building backend and distributed systems.",
+      "I'm a software engineer from Bogotá. I've spent **+6 years** building backend and distributed systems.",
       'The last four were in fintech. I joined Minteo as a junior and left as **Tech Lead**, after building from zero to production the infrastructure that orchestrates **+USD $200M per month** in regulated stablecoins. That is where I learned what no tutorial teaches: what happens when your code touches real money.',
       'Today my focus is **data**. I am obsessed with how things work under the hood: ledgers, event sourcing, neural networks, LLMs. That curiosity is where this blog comes from.',
       'I work **AI-first**. I design specs and harnesses so agents build alongside me — this portfolio included. And I write about what I learn along the way, because **explaining something is the best way to understand it**.',

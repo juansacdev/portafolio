@@ -4,7 +4,7 @@ export const ui = {
   es: {
     'meta.description':
       'Juan Sebastián Agudelo — software engineer de Bogotá. Backend, sistemas distribuidos y data. Construyo sistemas que mueven dinero real y escribo sobre cómo funcionan por detrás.',
-    'nav.experience': 'Experiencia',
+    'nav.experience': 'Experiencia laboral',
     'nav.projects': 'Proyectos',
     'nav.blog': 'Blog',
     'nav.about': 'Sobre mí',
@@ -14,7 +14,7 @@ export const ui = {
     'lang.switchShort': 'EN',
     'hero.available': 'Disponible para trabajar',
     'contact.cta': 'Contáctame',
-    'section.experience': 'Experiencia',
+    'section.experience': 'Experiencia laboral',
     'section.projects': 'Proyectos',
     'section.blog': 'Blog',
     'section.about': 'Sobre mí',
@@ -30,7 +30,7 @@ export const ui = {
   en: {
     'meta.description':
       'Juan Sebastián Agudelo — software engineer from Bogotá. Backend, distributed systems, and data. I build systems that move real money and write about how they work under the hood.',
-    'nav.experience': 'Experience',
+    'nav.experience': 'Work experience',
     'nav.projects': 'Projects',
     'nav.blog': 'Blog',
     'nav.about': 'About',
@@ -40,7 +40,7 @@ export const ui = {
     'lang.switchShort': 'ES',
     'hero.available': 'Open to work',
     'contact.cta': 'Contact me',
-    'section.experience': 'Experience',
+    'section.experience': 'Work experience',
     'section.projects': 'Projects',
     'section.blog': 'Blog',
     'section.about': 'About me',

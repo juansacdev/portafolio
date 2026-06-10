@@ -43,6 +43,17 @@ const a = anchors[locale];
 </header>
 
 <script>
+  // Bottom line: only visible once the page is scrolled.
+  const header = document.querySelector<HTMLElement>('.site-header');
+
+  if (header) {
+    const onScroll = () => {
+      header.toggleAttribute('data-scrolled', window.scrollY > 8);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
   // Scrollspy: highlight the nav link of the section currently in view.
   // Only runs on pages whose nav anchors point to the current path.
   const links = new Map<string, HTMLAnchorElement>();
@@ -93,14 +104,37 @@ const a = anchors[locale];
     background-color: color-mix(in srgb, var(--color-bg) 85%, transparent);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-block-end: 1px solid var(--color-border);
+  }
+
+  /* Soft, partial-width bottom line — fades in only after scrolling. */
+  .site-header::after {
+    content: '';
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline: 0;
+    margin-inline: auto;
+    width: min(80%, var(--max-width));
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--color-border) 25%,
+      var(--color-border) 75%,
+      transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .site-header[data-scrolled]::after {
+    opacity: 1;
   }
 
   .inner {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 0.5rem 1rem;
     max-width: var(--max-width);
     margin-inline: auto;
@@ -111,7 +145,7 @@ const a = anchors[locale];
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.25rem 1.1rem;
+    gap: 0.25rem 0.35rem;
     margin: 0;
     padding: 0;
   }
@@ -120,9 +154,9 @@ const a = anchors[locale];
     color: var(--color-text-muted);
     text-decoration: none;
     font-size: 0.95rem;
-    padding-block: 0.2rem;
-    border-block-end: 2px solid transparent;
-    transition: color 0.15s ease, border-color 0.15s ease;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    transition: color 0.15s ease, background-color 0.15s ease;
   }
 
   .nav-list a:hover {
@@ -130,8 +164,8 @@ const a = anchors[locale];
   }
 
   .nav-list a[aria-current='true'] {
-    color: var(--color-accent-strong);
-    border-block-end-color: var(--color-accent);
+    background-color: var(--color-tag-bg);
+    color: var(--color-tag-text);
     font-weight: 600;
   }
 
