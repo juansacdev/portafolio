@@ -54,9 +54,9 @@ export const content: Record<Locale, LocalizedContent> = {
   es: {
     hero: {
       title: 'Hey, soy **Juanse**',
-      role: 'Software Engineer · Distributed Systems & Architecture · AI/ML',
+      role: 'Distributed Systems & Architecture · AI/ML',
       tagline: [
-        '+6 años de experiencia. Software engineer autodidacta enfocado en arquitectura, diseño y escalamiento de sistemas distribuidos — sobre todo en **Ledger y Fintech**.',
+        '+6 años de experiencia. Software Engineer autodidacta enfocado en arquitectura, diseño y escalamiento de sistemas distribuidos — sobre todo en **Ledger y Fintech**.',
         'Construyo sistemas y workflows robustos que mueven **dinero real**.',
         '**Aprendo en público**: escribo explainers de cómo funcionan las cosas por detrás.',
       ],
@@ -146,9 +146,9 @@ export const content: Record<Locale, LocalizedContent> = {
   en: {
     hero: {
       title: "Hey, I'm **Juanse**",
-      role: 'Software Engineer · Distributed Systems & Architecture · AI/ML',
+      role: 'Distributed Systems & Architecture · AI/ML',
       tagline: [
-        '+6 years of experience. Self-taught software engineer focused on the architecture, design, and scaling of distributed systems — especially **Ledgers and Fintech**.',
+        '+6 years of experience. Self-taught Software Engineer focused on the architecture, design, and scaling of distributed systems — especially **Ledgers and Fintech**.',
         'I build robust systems and workflows that move **real money**.',
         '**I learn in public**: I write explainers on how things work under the hood.',
       ],

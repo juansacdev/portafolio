@@ -31,10 +31,12 @@ const year = new Date().getFullYear();
     margin-block-start: var(--space-section);
   }
 
+  /* No top padding: the footer's margin already equals --space-section,
+     so the gap before "Contacto" matches the gap between sections. */
   .inner {
     max-width: var(--max-width);
     margin-inline: auto;
-    padding: 2.5rem 1.5rem;
+    padding: 0 1.5rem 2.5rem;
   }
 
   h2 {
