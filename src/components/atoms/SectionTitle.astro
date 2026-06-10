@@ -23,8 +23,10 @@ const { id, icon } = Astro.props;
     gap: 0.75rem;
   }
 
+  /* Same color as the heading text: white in dark mode, near-black in
+     light mode (pure white would vanish on the light background). */
   .section-title :global(.icon) {
-    color: var(--color-accent);
+    color: var(--color-text);
   }
 
   /* Same soft fade as the navbar line, but only toward the right edge. */

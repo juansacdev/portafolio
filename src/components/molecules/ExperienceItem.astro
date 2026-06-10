@@ -31,11 +31,13 @@ const { entry } = Astro.props;
 
 <style>
   /* Timeline: a vertical rail on the left with a dot per entry.
-     The 9px margin centers the rail/dots under the 25px section icon
-     (value measured against the rendered icon's pixel center). */
+     Rail center, dot center, and section-icon center must share the same
+     x. The dot's inset is measured from the padding box (the rail border
+     sits outside it), hence -9px instead of -7px. Values verified against
+     rendered pixels. */
   .experience-item {
     position: relative;
-    margin-inline-start: 9px;
+    margin-inline-start: 11px;
     padding-inline-start: 1.75rem;
     padding-block-end: 2.5rem;
     border-inline-start: 2px solid var(--color-border);
@@ -45,11 +47,10 @@ const { entry } = Astro.props;
     padding-block-end: 0.5rem;
   }
 
-  /* 16px dot whose center (x = 1px) matches the center of the 2px rail. */
   .experience-item::before {
     content: '';
     position: absolute;
-    inset-inline-start: -7px;
+    inset-inline-start: -9px;
     inset-block-start: 0.25rem;
     width: 16px;
     height: 16px;
