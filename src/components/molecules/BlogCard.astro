@@ -1,0 +1,94 @@
+---
+import TagList from './TagList.astro';
+import type { Locale } from '../../i18n/ui';
+import { t } from '../../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  url: string;
+  title: string;
+  description: string;
+  pubDate: Date;
+  readingTime: string;
+  tags: string[];
+}
+
+const { locale, url, title, description, pubDate, readingTime, tags } =
+  Astro.props;
+
+const formattedDate = pubDate.toLocaleDateString(
+  locale === 'es' ? 'es-CO' : 'en-US',
+  { year: 'numeric', month: 'long', day: 'numeric' }
+);
+---
+
+<article class="blog-card">
+  <header>
+    <h3><a href={url}>{title}</a></h3>
+    <p class="meta">
+      <time datetime={pubDate.toISOString().slice(0, 10)}>{formattedDate}</time>
+      <span aria-hidden="true">·</span>
+      <span>{readingTime}</span>
+    </p>
+  </header>
+
+  <p class="description">{description}</p>
+
+  <footer class="card-footer">
+    <TagList tags={tags} />
+    <a class="read-more" href={url}>{t(locale, 'blog.readMore')} →</a>
+  </footer>
+</article>
+
+<style>
+  .blog-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin-block: 0 0.35rem;
+  }
+
+  h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  h3 a:hover {
+    color: var(--color-accent-strong);
+  }
+
+  .meta {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    display: flex;
+    gap: 0.5rem;
+    margin-block-end: 0.75rem;
+  }
+
+  .description {
+    font-size: 0.95rem;
+  }
+
+  .card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .read-more {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .read-more:hover {
+    text-decoration: underline;
+  }
+</style>

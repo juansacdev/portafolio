@@ -1,0 +1,28 @@
+---
+import SectionTitle from '../atoms/SectionTitle.astro';
+import ExperienceItem from '../molecules/ExperienceItem.astro';
+import type { Locale } from '../../i18n/ui';
+import { t, anchors } from '../../i18n/ui';
+import { content } from '../../data/profile';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { experience } = content[locale];
+---
+
+<section class="experience" aria-labelledby={anchors[locale].experience}>
+  <SectionTitle id={anchors[locale].experience}>
+    {t(locale, 'section.experience')}
+  </SectionTitle>
+
+  {experience.map((entry) => <ExperienceItem entry={entry} />)}
+</section>
+
+<style>
+  .experience {
+    padding-block-start: var(--space-section);
+  }
+</style>

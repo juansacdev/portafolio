@@ -1,0 +1,105 @@
+---
+import ThemeToggle from '../atoms/ThemeToggle.astro';
+import LanguageSwitch from '../atoms/LanguageSwitch.astro';
+import type { Locale } from '../../i18n/ui';
+import { t, anchors } from '../../i18n/ui';
+import { identity } from '../../data/profile';
+
+interface Props {
+  locale: Locale;
+  /** URL of this same page in the other language. */
+  altUrl: string;
+  /** Base path of the homepage in the current language ('/' or '/en/'). */
+  homeUrl: string;
+}
+
+const { locale, altUrl, homeUrl } = Astro.props;
+const targetLocale: Locale = locale === 'es' ? 'en' : 'es';
+const a = anchors[locale];
+---
+
+<header class="site-header">
+  <a class="home-link" href={homeUrl}>{identity.nickname}</a>
+
+  <nav aria-label={t(locale, 'nav.label')}>
+    <ul class="nav-list">
+      <li><a href={`${homeUrl}#${a.experience}`}>{t(locale, 'nav.experience')}</a></li>
+      <li><a href={`${homeUrl}#${a.projects}`}>{t(locale, 'nav.projects')}</a></li>
+      <li><a href={`${homeUrl}#${a.blog}`}>{t(locale, 'nav.blog')}</a></li>
+      <li><a href={`${homeUrl}#${a.about}`}>{t(locale, 'nav.about')}</a></li>
+    </ul>
+  </nav>
+
+  <div class="controls">
+    <LanguageSwitch
+      href={altUrl}
+      targetLocale={targetLocale}
+      label={t(locale, 'lang.switch')}
+      shortLabel={t(locale, 'lang.switchShort')}
+    />
+    <ThemeToggle label={t(locale, 'theme.toggle')} />
+  </div>
+</header>
+
+<style>
+  .site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .home-link {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .home-link:hover {
+    color: var(--color-accent-strong);
+  }
+
+  nav {
+    margin-inline-start: auto;
+  }
+
+  .nav-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.1rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-list a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  .nav-list a:hover {
+    color: var(--color-accent-strong);
+  }
+
+  .controls {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 40rem) {
+    .site-header {
+      justify-content: space-between;
+    }
+
+    nav {
+      order: 3;
+      width: 100%;
+      margin-inline-start: 0;
+    }
+  }
+</style>

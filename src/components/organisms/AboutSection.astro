@@ -1,0 +1,31 @@
+---
+import SectionTitle from '../atoms/SectionTitle.astro';
+import type { Locale } from '../../i18n/ui';
+import { t, anchors } from '../../i18n/ui';
+import { content } from '../../data/profile';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { about } = content[locale];
+---
+
+<section class="about" aria-labelledby={anchors[locale].about}>
+  <SectionTitle id={anchors[locale].about}>
+    {t(locale, 'section.about')}
+  </SectionTitle>
+
+  {about.map((paragraph) => <p>{paragraph}</p>)}
+</section>
+
+<style>
+  .about {
+    padding-block-start: var(--space-section);
+  }
+
+  p {
+    max-width: 40rem;
+  }
+</style>

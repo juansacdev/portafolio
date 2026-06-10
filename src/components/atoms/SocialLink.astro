@@ -1,0 +1,46 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  /** External links open in a new tab; mailto links don't need it. */
+  external?: boolean;
+}
+
+const { href, label, external = true } = Astro.props;
+---
+
+<a
+  href={href}
+  class="social-link"
+  {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+>
+  <slot />
+  <span>{label}</span>
+</a>
+
+<style>
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background-color: var(--color-surface);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .social-link:hover {
+    color: var(--color-accent-strong);
+    border-color: var(--color-accent);
+  }
+
+  .social-link :global(svg) {
+    width: 1.1em;
+    height: 1.1em;
+    fill: currentColor;
+  }
+</style>

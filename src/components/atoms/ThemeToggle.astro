@@ -1,0 +1,93 @@
+---
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<button type="button" class="theme-toggle" aria-label={label} title={label}>
+  <svg
+    class="icon-sun"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="4"></circle>
+    <path
+      d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+    ></path>
+  </svg>
+  <svg
+    class="icon-moon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+</button>
+
+<script>
+  function setupThemeToggle() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.theme-toggle');
+
+    for (const button of buttons) {
+      button.addEventListener('click', () => {
+        const current = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('theme', next);
+      });
+    }
+  }
+
+  setupThemeToggle();
+</script>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .theme-toggle:hover {
+    color: var(--color-accent-strong);
+    border-color: var(--color-accent);
+  }
+
+  .theme-toggle svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  /* Show the icon of the theme you would switch TO. */
+  .icon-sun {
+    display: none;
+  }
+
+  :global([data-theme='dark']) .icon-sun {
+    display: block;
+  }
+
+  :global([data-theme='dark']) .icon-moon {
+    display: none;
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+import TagList from './TagList.astro';
+import type { Project } from '../../data/profile';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="project-card">
+  <h3>
+    {
+      project.repoUrl ? (
+        <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+          {project.name}
+        </a>
+      ) : (
+        project.name
+      )
+    }
+  </h3>
+
+  {project.description.map((paragraph) => <p>{paragraph}</p>)}
+
+  <TagList tags={project.stack} />
+</article>
+
+<style>
+  .project-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+    margin-block: 0 0.75rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  p:last-of-type {
+    margin-block-end: 1rem;
+  }
+</style>

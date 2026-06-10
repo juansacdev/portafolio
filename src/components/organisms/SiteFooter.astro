@@ -1,0 +1,51 @@
+---
+import ContactLinks from '../molecules/ContactLinks.astro';
+import type { Locale } from '../../i18n/ui';
+import { t, anchors } from '../../i18n/ui';
+import { identity } from '../../data/profile';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="inner">
+    <section aria-labelledby={anchors[locale].contact}>
+      <h2 id={anchors[locale].contact}>{t(locale, 'section.contact')}</h2>
+      <p>{t(locale, 'contact.intro')}</p>
+      <ContactLinks />
+    </section>
+
+    <p class="colophon">
+      © {year} {identity.name}. {t(locale, 'footer.builtWith')}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-block-start: var(--space-section);
+    border-block-start: 1px solid var(--color-border);
+  }
+
+  .inner {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding: 2.5rem 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    margin-block: 0 0.5rem;
+  }
+
+  .colophon {
+    margin-block: 2rem 0;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+</style>

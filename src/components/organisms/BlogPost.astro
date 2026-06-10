@@ -1,0 +1,88 @@
+---
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import TagList from '../molecules/TagList.astro';
+import type { Locale } from '../../i18n/ui';
+import { t } from '../../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  post: CollectionEntry<'blog'>;
+}
+
+const { locale, post } = Astro.props;
+const { Content } = await render(post);
+
+const formattedDate = post.data.pubDate.toLocaleDateString(
+  locale === 'es' ? 'es-CO' : 'en-US',
+  { year: 'numeric', month: 'long', day: 'numeric' }
+);
+
+const homeUrl = locale === 'es' ? '/' : '/en/';
+---
+
+<article class="blog-post">
+  <header>
+    <h1>{post.data.title}</h1>
+    <p class="meta">
+      <time datetime={post.data.pubDate.toISOString().slice(0, 10)}>
+        {formattedDate}
+      </time>
+      <span aria-hidden="true">·</span>
+      <span>{post.data.readingTime}</span>
+    </p>
+    <TagList tags={post.data.tags} />
+  </header>
+
+  <div class="prose">
+    <Content />
+  </div>
+
+  <footer>
+    <a href={`${homeUrl}#blog`}>← {t(locale, 'blog.backToHome')}</a>
+  </footer>
+</article>
+
+<style>
+  .blog-post {
+    padding-block-start: 3rem;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 4.5vw, 2.25rem);
+    margin-block: 0 0.5rem;
+  }
+
+  .meta {
+    color: var(--color-text-muted);
+    display: flex;
+    gap: 0.5rem;
+    margin-block-end: 0.75rem;
+  }
+
+  header {
+    margin-block-end: 2.5rem;
+  }
+
+  .prose :global(h2) {
+    font-size: 1.4rem;
+    margin-block: 2.25rem 0.75rem;
+  }
+
+  .prose :global(h3) {
+    font-size: 1.15rem;
+    margin-block: 1.75rem 0.5rem;
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    padding-inline-start: 1.4rem;
+    margin-block: 0 1.1em;
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  footer {
+    margin-block-start: 3rem;
+  }
+</style>

@@ -1,0 +1,36 @@
+---
+import SectionTitle from '../atoms/SectionTitle.astro';
+import ProjectCard from '../molecules/ProjectCard.astro';
+import type { Locale } from '../../i18n/ui';
+import { t, anchors } from '../../i18n/ui';
+import { content } from '../../data/profile';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { projects } = content[locale];
+---
+
+<section class="projects" aria-labelledby={anchors[locale].projects}>
+  <SectionTitle id={anchors[locale].projects}>
+    {t(locale, 'section.projects')}
+  </SectionTitle>
+
+  <div class="grid">
+    {projects.map((project) => <ProjectCard project={project} />)}
+  </div>
+</section>
+
+<style>
+  .projects {
+    padding-block-start: var(--space-section);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+    gap: 1.25rem;
+  }
+</style>

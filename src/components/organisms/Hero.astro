@@ -1,0 +1,69 @@
+---
+import Avatar from '../atoms/Avatar.astro';
+import ContactLinks from '../molecules/ContactLinks.astro';
+import type { Locale } from '../../i18n/ui';
+import { t } from '../../i18n/ui';
+import { content, identity } from '../../data/profile';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { hero } = content[locale];
+---
+
+<section class="hero">
+  <Avatar alt={t(locale, 'a11y.avatarAlt')} size={128} />
+
+  <div class="hero-text">
+    <p class="greeting">{hero.greeting}</p>
+    <h1>{identity.name}</h1>
+    <p class="role">{hero.role} · {identity.location}</p>
+
+    {hero.tagline.map((line) => <p class="tagline">{line}</p>)}
+
+    <ContactLinks />
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding-block: var(--space-section) 0;
+  }
+
+  .greeting {
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-block-end: 0.25rem;
+  }
+
+  h1 {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    margin-block: 0 0.25rem;
+  }
+
+  .role {
+    color: var(--color-text-muted);
+    font-weight: 500;
+    margin-block-end: 1.25rem;
+  }
+
+  .tagline {
+    max-width: 38rem;
+  }
+
+  .hero-text > :global(address) {
+    margin-block-start: 1.5rem;
+  }
+
+  @media (max-width: 40rem) {
+    .hero {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
+</style>
