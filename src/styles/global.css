@@ -96,13 +96,22 @@ html {
 
 body {
   margin: 0;
-  min-height: 100svh;
+  /* Sticky-footer layout: on short pages (e.g. /blog) main stretches so
+     the footer reaches the bottom and no off-theme band can show. */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
   font-size: 1.0625rem;
   line-height: 1.65;
   transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body > main {
+  flex: 1;
+  width: 100%;
 }
 
 h1,

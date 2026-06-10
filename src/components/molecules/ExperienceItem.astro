@@ -30,9 +30,12 @@ const { entry } = Astro.props;
 </article>
 
 <style>
-  /* Timeline: a vertical rail on the left with a dot per entry. */
+  /* Timeline: a vertical rail on the left with a dot per entry.
+     The 9px margin centers the rail/dots under the 25px section icon
+     (value measured against the rendered icon's pixel center). */
   .experience-item {
     position: relative;
+    margin-inline-start: 9px;
     padding-inline-start: 1.75rem;
     padding-block-end: 2.5rem;
     border-inline-start: 2px solid var(--color-border);
