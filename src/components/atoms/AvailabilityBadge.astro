@@ -89,12 +89,14 @@ const { locale, variant = 'default' } = Astro.props;
     inset: 0;
     background: linear-gradient(
       110deg,
-      transparent 25%,
-      color-mix(in srgb, var(--color-available) 30%, transparent) 50%,
-      transparent 75%
+      transparent 15%,
+      color-mix(in srgb, var(--color-available) 25%, transparent) 50%,
+      transparent 85%
     );
     transform: translateX(-100%);
-    animation: badge-shine 2.4s ease-in-out infinite;
+    /* Linear timing: ease-in-out rushes the visible middle of the sweep,
+       linear keeps it calm without changing the 2.5s cadence. */
+    animation: badge-shine 2.5s linear infinite;
   }
 
   @keyframes badge-shine {

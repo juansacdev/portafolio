@@ -53,7 +53,7 @@ export interface LocalizedContent {
 export const content: Record<Locale, LocalizedContent> = {
   es: {
     hero: {
-      title: 'Hey, soy **Juanse**.',
+      title: 'Hey, soy **Juanse**',
       role: 'Software Engineer · Backend, Data & AI',
       tagline: [
         'Construyo sistemas que mueven **dinero real**. Y escribo sobre **cómo funcionan por detrás**.',
@@ -142,7 +142,7 @@ export const content: Record<Locale, LocalizedContent> = {
   },
   en: {
     hero: {
-      title: "Hey, I'm **Juanse**.",
+      title: "Hey, I'm **Juanse**",
       role: 'Software Engineer · Backend, Data & AI',
       tagline: [
         'I build systems that move **real money**. And I write about **how they work under the hood**.',

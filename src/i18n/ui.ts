@@ -4,7 +4,7 @@ export const ui = {
   es: {
     'meta.description':
       'Juan Sebastián Agudelo — software engineer de Bogotá. Backend, sistemas distribuidos y data. Construyo sistemas que mueven dinero real y escribo sobre cómo funcionan por detrás.',
-    'nav.experience': 'Experiencia laboral',
+    'nav.experience': 'Experiencia',
     'nav.projects': 'Proyectos',
     'nav.blog': 'Blog',
     'nav.about': 'Sobre mí',
@@ -30,7 +30,7 @@ export const ui = {
   en: {
     'meta.description':
       'Juan Sebastián Agudelo — software engineer from Bogotá. Backend, distributed systems, and data. I build systems that move real money and write about how they work under the hood.',
-    'nav.experience': 'Work experience',
+    'nav.experience': 'Experience',
     'nav.projects': 'Projects',
     'nav.blog': 'Blog',
     'nav.about': 'About',
