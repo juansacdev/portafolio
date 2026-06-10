@@ -157,6 +157,12 @@ pre code {
   padding: 0;
 }
 
+/* Color-only highlight (no weight change), used via ==marker== in content. */
+mark {
+  background-color: transparent;
+  color: var(--color-accent);
+}
+
 blockquote {
   margin-inline: 0;
   padding-inline-start: 1rem;

@@ -28,7 +28,7 @@ export const ui = {
       'Explainers de "cómo funciona X por detrás": los internals que me dan curiosidad, explicados como me hubiera gustado que me los explicaran.',
     'contact.intro':
       '¿Quieres hablar de un rol, un proyecto o un post? Escríbeme.',
-    'footer.builtWith': 'Hecho con ❤️',
+    'footer.builtWith': 'Hecho con 🫀',
     'a11y.avatarAlt': 'Avatar de Juan Sebastián Agudelo',
   },
   en: {
@@ -58,7 +58,7 @@ export const ui = {
       'Explainers on "how X works under the hood": the internals I am curious about, explained the way I wish someone had explained them to me.',
     'contact.intro':
       'Want to talk about a role, a project, or a post? Reach out.',
-    'footer.builtWith': 'Built with ❤️',
+    'footer.builtWith': 'Built with 🫀',
     'a11y.avatarAlt': 'Avatar of Juan Sebastián Agudelo',
   },
 } as const satisfies Record<Locale, Record<string, string>>;
