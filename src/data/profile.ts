@@ -135,7 +135,8 @@ export const content: Record<Locale, LocalizedContent> = {
       },
     ],
     about: [
-      'Me llamo Juan Sebastián Agudelo, pero puedes llamarme Juanse. ==Empecé a programar a los 19 años, haciendo un pivot a mi vida==: era estudiante becado de finanzas. ==La curiosidad ha marcado mi vida desde siempre==, y fue lo que me motivó a aprender programación de manera autodidacta.',
+      'Me llamo Juan Sebastián Agudelo, pero puedes llamarme Juanse. ==Empecé a programar a los 19 años, haciendo un pivot a mi vida==: era estudiante becado de finanzas.',
+      '==La curiosidad ha marcado mi vida desde siempre==, y fue lo que me motivó a aprender programación de manera autodidacta.',
       'He trabajado para startups y grandes compañías. Entre mis éxitos: fui parte de —y lideré— un equipo pequeño (4~6 devs) que desarrolló una stablecoin (**COPM**) con peg 1:1 sobre las redes de Polygon y Celo. En su mejor mes movió **más de $200M** en volumen transaccional; en total, **casi $2B**. Sin ningún incidente y de manera segura.',
       'Escribo sobre lo que aprendo en el camino, porque *[enseñar es aprender dos veces](https://es.wikiquote.org/wiki/Joseph_Joubert)*.',
       '==Creo profundamente en la educación continua==, sea de la forma que sea —formal, en línea o autodidacta—, como manera de seguir creciendo a nivel personal y profesional.',
@@ -227,7 +228,8 @@ export const content: Record<Locale, LocalizedContent> = {
       },
     ],
     about: [
-      "My name is Juan Sebastián Agudelo, but you can call me Juanse. ==I started programming at 19, pivoting my whole life==: I was a finance student on a scholarship. ==Curiosity has shaped my life for as long as I can remember==, and it is what pushed me to learn programming on my own.",
+      "My name is Juan Sebastián Agudelo, but you can call me Juanse. ==I started programming at 19, pivoting my whole life==: I was a finance student on a scholarship.",
+      "==Curiosity has shaped my life for as long as I can remember==, and it is what pushed me to learn programming on my own.",
       'I have worked for startups and large companies. Among my wins: I was part of —and led— a small team (4~6 devs) that built a stablecoin (**COPM**) with a 1:1 peg on Polygon and Celo. In its best month it moved **over $200M** in transactional volume; in total, **almost $2B**. Without a single incident, and securely.',
       'I write about what I learn along the way, because *[to teach is to learn twice](https://en.wikiquote.org/wiki/Joseph_Joubert)*.',
       '==I deeply believe in continuous education== in every form —formal, online, or self-taught— as the way to keep growing both personally and professionally.',
