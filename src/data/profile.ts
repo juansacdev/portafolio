@@ -58,7 +58,7 @@ export const content: Record<Locale, LocalizedContent> = {
       tagline: [
         '**+6 años de experiencia.** Software engineer enfocado en **arquitectura, diseño y escalamiento de sistemas distribuidos**. **Ledger y Fintech**.',
         'Construyo **sistemas y workflows robustos** que mueven **dinero real**.',
-        'Escribo sobre lo que voy aprendiendo en el camino y sobre **cómo funcionan las cosas por detrás**.',
+        '**Aprendo en público**: escribo explainers de **cómo funcionan las cosas por detrás**.',
       ],
     },
     experience: [
@@ -150,7 +150,7 @@ export const content: Record<Locale, LocalizedContent> = {
       tagline: [
         '**+6 years of experience.** Software engineer focused on the **architecture, design, and scaling of distributed systems**. **Ledgers and Fintech**.',
         'I build **robust systems and workflows** that move **real money**.',
-        'I write about what I learn along the way and about **how things work under the hood**.',
+        '**I learn in public**: I write explainers on **how things work under the hood**.',
       ],
     },
     experience: [
