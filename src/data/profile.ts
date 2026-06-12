@@ -76,30 +76,28 @@ export const content: Record<Locale, LocalizedContent> = {
         ],
       },
       {
-        company: 'Cóndor Labs',
+        company: 'Cóndor Labs · Software Consultancy',
         role: 'Backend Developer',
         start: '2021-12',
         end: '2022-05',
         period: 'dic 2021 – may 2022',
-        summary:
-          'Consultoría de software desarrollando un producto SaaS B2B para un cliente externo. Equipo de ~5 ingenieros.',
-        bullets: [
-          'Implementé una capa de **caching con Redis** sobre las queries más pesadas, reduciendo la latencia en los endpoints de mayor tráfico.',
-          'Construí los pipelines de **CI/CD en GitHub Actions** (lint, test, build, deploy), eliminando los despliegues manuales del equipo.',
-          'Elevé la **cobertura de tests** automatizados integrando pytest y Jest como precondición para los releases.',
+        summary: 'Consultora de software colombiana para productos SaaS B2B.',
+        paragraphs: [
+          'Trabajé en el backend del producto SaaS B2B de un cliente externo: implementé la capa de **caching con Redis** sobre las queries más pesadas, reduciendo la latencia en los endpoints de mayor tráfico.',
+          'También construí los pipelines de **CI/CD en GitHub Actions**, eliminando los despliegues manuales del equipo, y elevé la cobertura de tests con pytest y Jest como precondición de cada release.',
         ],
       },
       {
-        company: 'Arvolution',
+        company: 'Arvolution · HSE Tech',
         role: 'Jr Backend Engineer',
         start: '2021-06',
         end: '2021-12',
         period: 'jun 2021 – dic 2021',
         summary:
-          'Startup B2B SaaS de gestión de incidentes HSE (Health, Safety & Environment) para clientes industriales como Bavaria (AB InBev).',
-        bullets: [
-          'Construí workflows **ETL en Python sobre AWS Lambda** que procesaban data de incidentes de seguridad laboral, alimentando reportes regulatorios y dashboards.',
-          'Implementé **APIs GraphQL** con DynamoDB y S3 como capa de persistencia event-driven.',
+          'Inspecciones y gestión de incidentes HSE para la industria en Latinoamérica.',
+        paragraphs: [
+          'Trabajé con clientes industriales como **Bavaria (AB InBev)**: construí los workflows **ETL en Python sobre AWS Lambda** que procesaban la data de incidentes de seguridad reportados en planta, alimentando los reportes regulatorios y dashboards del producto.',
+          'También implementé las **APIs GraphQL** del producto, con DynamoDB y S3 como capa de persistencia event-driven.',
         ],
       },
     ],
@@ -155,30 +153,28 @@ export const content: Record<Locale, LocalizedContent> = {
         ],
       },
       {
-        company: 'Cóndor Labs',
+        company: 'Cóndor Labs · Software Consultancy',
         role: 'Backend Developer',
         start: '2021-12',
         end: '2022-05',
         period: 'Dec 2021 – May 2022',
-        summary:
-          'Software consultancy building a B2B SaaS product for an external client. Team of ~5 engineers.',
-        bullets: [
-          'Implemented a **Redis caching layer** over the heaviest database queries, cutting latency on the highest-traffic endpoints.',
-          'Built the **CI/CD pipelines on GitHub Actions** (lint, test, build, deploy), eliminating the team’s manual deploys.',
-          'Raised automated **test coverage** by integrating pytest and Jest as a precondition for releases.',
+        summary: 'Colombian software consultancy building B2B SaaS products.',
+        paragraphs: [
+          "I worked on the backend of an external client's B2B SaaS product: I implemented the **Redis caching layer** over the heaviest queries, cutting latency on the highest-traffic endpoints.",
+          'I also built the **CI/CD pipelines on GitHub Actions**, eliminating the team’s manual deploys, and raised test coverage with pytest and Jest as a precondition for every release.',
         ],
       },
       {
-        company: 'Arvolution',
+        company: 'Arvolution · HSE Tech',
         role: 'Jr Backend Engineer',
         start: '2021-06',
         end: '2021-12',
         period: 'Jun 2021 – Dec 2021',
         summary:
-          'B2B SaaS startup for industrial HSE (Health, Safety & Environment) incident management, serving clients like Bavaria (AB InBev).',
-        bullets: [
-          'Built **Python ETL workflows on AWS Lambda** processing workplace-incident data, feeding regulatory reports and dashboards.',
-          'Implemented **GraphQL APIs** backed by DynamoDB and S3 as the event-driven persistence layer.',
+          'Inspections and HSE incident management for industry across Latin America.',
+        paragraphs: [
+          'I worked with industrial clients such as **Bavaria (AB InBev)**: I built the **Python ETL workflows on AWS Lambda** that processed safety-incident data reported from plants, feeding the product’s regulatory reports and dashboards.',
+          'I also implemented the product’s **GraphQL APIs**, backed by DynamoDB and S3 as the event-driven persistence layer.',
         ],
       },
     ],
