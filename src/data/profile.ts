@@ -49,7 +49,10 @@ export interface Project {
   name: string;
   description: string[];
   stack: string[];
+  /** Source code repository. */
   repoUrl?: string;
+  /** Live deployment of the project. */
+  liveUrl?: string;
   status: ContentStatus;
 }
 

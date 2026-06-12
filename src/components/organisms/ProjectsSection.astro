@@ -22,7 +22,7 @@ const projects = content[locale].projects.filter(
   </SectionTitle>
 
   <div class="grid">
-    {projects.map((project) => <ProjectCard project={project} />)}
+    {projects.map((project) => <ProjectCard locale={locale} project={project} />)}
   </div>
 </section>
 )}

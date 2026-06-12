@@ -1,30 +1,41 @@
 ---
 import TagList from './TagList.astro';
 import type { Project } from '../../data/profile';
+import type { Locale } from '../../i18n/ui';
+import { t } from '../../i18n/ui';
 
 interface Props {
+  locale: Locale;
   project: Project;
 }
 
-const { project } = Astro.props;
+const { locale, project } = Astro.props;
+const hasLinks = project.repoUrl || project.liveUrl;
 ---
 
 <article class="project-card">
-  <h3>
-    {
-      project.repoUrl ? (
-        <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
-          {project.name}
-        </a>
-      ) : (
-        project.name
-      )
-    }
-  </h3>
+  <h3>{project.name}</h3>
 
   {project.description.map((paragraph) => <p>{paragraph}</p>)}
 
   <TagList tags={project.stack} />
+
+  {
+    hasLinks && (
+      <footer class="links">
+        {project.repoUrl && (
+          <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+            {t(locale, 'project.repo')} ↗
+          </a>
+        )}
+        {project.liveUrl && (
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+            {t(locale, 'project.live')} ↗
+          </a>
+        )}
+      </footer>
+    )
+  }
 </article>
 
 <style>
@@ -49,5 +60,21 @@ const { project } = Astro.props;
 
   p:last-of-type {
     margin-block-end: 1rem;
+  }
+
+  .links {
+    display: flex;
+    gap: 1rem;
+    margin-block-start: 1rem;
+  }
+
+  .links a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    text-decoration: underline;
   }
 </style>
