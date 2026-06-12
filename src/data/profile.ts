@@ -32,8 +32,9 @@ export interface ExperienceEntry {
   end: string;
   period: string; // human-readable range
   summary: string;
-  bullets: string[];
-  stack: string[];
+  /** Narrative paragraphs. Takes precedence over bullets when present. */
+  paragraphs?: string[];
+  bullets?: string[];
 }
 
 export interface Project {
@@ -56,34 +57,22 @@ export const content: Record<Locale, LocalizedContent> = {
       title: 'Hey, soy **Juanse**',
       role: 'Distributed Systems & Architecture · AI/ML',
       tagline: [
-        '+6 años de experiencia. Software Engineer autodidacta enfocado en arquitectura, diseño y escalamiento de sistemas distribuidos — sobre todo en **Ledger y Fintech**.',
-        'Construyo sistemas y workflows robustos que mueven **dinero real**.',
+        '+6 años de experiencia. Software Engineer autodidacta enfocado en arquitectura, diseño y escalamiento de sistemas distribuidos.',
+        '**AI-first**: diseño specs y harnesses para LLMs y agentes.',
         '**Aprendo en público**: escribo explainers de cómo funcionan las cosas por detrás.',
       ],
     },
     experience: [
       {
-        company: 'Minteo',
-        role: 'Tech Lead (promovido desde Engineer Junior)',
+        company: 'Minteo · Fintech',
+        role: 'Founding Software Engineer – Tech Lead',
         start: '2022-06',
         end: '2026-05',
         period: 'jun 2022 – may 2026',
-        summary:
-          'Stablecoin Settlement Layer para Latinoamérica. Regulada por la Superintendencia Financiera de Colombia (SFC), auditada mensualmente por BDO. Multi-chain: Polygon, Celo y Solana.',
-        bullets: [
-          'Crecí de **engineer junior a Tech Lead** en 4 años, atravesando el pivote completo de la compañía: de NFT marketplace a Stablecoin Settlement Layer. Construí de cero a producción ambos productos.',
-          'Lideré el diseño y construcción end-to-end de Stable, la plataforma core: on/off-ramps, workflows de **mint/burn** que sostienen la paridad 1:1 con depósitos bancarios, dispersión de fondos, reportes regulatorios y el módulo de **KYC/compliance**.',
-          'Operé en producción la plataforma que orquesta **+USD $200M/mes** en settlement on-chain — **~USD $1.83B acumulados** en 2.6 años, soportando **+100,000 usuarios finales** vía clientes B2B.',
-          'Lideré por 3+ años un equipo de **4–5 ingenieros** reportando directamente al CTO, con participación activa en hiring y en las decisiones técnicas críticas del producto.',
-        ],
-        stack: [
-          'TypeScript',
-          'Next.js',
-          'Fastify',
-          'Temporal.io',
-          'PostgreSQL',
-          'AWS EKS',
-          'Terraform',
+        summary: 'Stablecoin Settlement Layer para Latinoamérica.',
+        paragraphs: [
+          'Fui parte del equipo que desarrolló las stablecoins **COPM, MXNM y BRLM** sobre múltiples chains como Polygon y Celo.',
+          'Nuestra misión era construir la infraestructura de pagos para Latinoamérica. Diseñamos y construimos los sistemas, los workflows y la arquitectura que movió dinero real: **más de $200M** en el mejor mes y **casi $2,000M** en total, en volumen transaccional.',
         ],
       },
       {
@@ -99,7 +88,6 @@ export const content: Record<Locale, LocalizedContent> = {
           'Construí los pipelines de **CI/CD en GitHub Actions** (lint, test, build, deploy), eliminando los despliegues manuales del equipo.',
           'Elevé la **cobertura de tests** automatizados integrando pytest y Jest como precondición para los releases.',
         ],
-        stack: ['Python', 'Node.js', 'Redis', 'AWS', 'GitHub Actions'],
       },
       {
         company: 'Arvolution',
@@ -113,7 +101,6 @@ export const content: Record<Locale, LocalizedContent> = {
           'Construí workflows **ETL en Python sobre AWS Lambda** que procesaban data de incidentes de seguridad laboral, alimentando reportes regulatorios y dashboards.',
           'Implementé **APIs GraphQL** con DynamoDB y S3 como capa de persistencia event-driven.',
         ],
-        stack: ['Python', 'TypeScript', 'GraphQL', 'DynamoDB', 'AWS Lambda'],
       },
     ],
     projects: [
@@ -149,34 +136,22 @@ export const content: Record<Locale, LocalizedContent> = {
       title: "Hey, I'm **Juanse**",
       role: 'Distributed Systems & Architecture · AI/ML',
       tagline: [
-        '+6 years of experience. Self-taught Software Engineer focused on the architecture, design, and scaling of distributed systems — especially **Ledgers and Fintech**.',
-        'I build robust systems and workflows that move **real money**.',
+        '+6 years of experience. Self-taught Software Engineer focused on the architecture, design, and scaling of distributed systems.',
+        '**AI-first**: I design specs and harnesses for LLMs and agents.',
         '**I learn in public**: I write explainers on how things work under the hood.',
       ],
     },
     experience: [
       {
-        company: 'Minteo',
-        role: 'Tech Lead (promoted from Junior Engineer)',
+        company: 'Minteo · Fintech',
+        role: 'Founding Software Engineer – Tech Lead',
         start: '2022-06',
         end: '2026-05',
         period: 'Jun 2022 – May 2026',
-        summary:
-          "Stablecoin Settlement Layer for Latin America. Regulated by Colombia's financial regulator (SFC), audited monthly by BDO. Multi-chain: Polygon, Celo, and Solana.",
-        bullets: [
-          "Grew from **junior engineer to Tech Lead** in 4 years, navigating the company's full pivot: from NFT marketplace to Stablecoin Settlement Layer. Built both products from zero to production.",
-          'Led the end-to-end design and construction of Stable, the core platform: on/off-ramps, **mint/burn** workflows that uphold the 1:1 parity with bank deposits, fund disbursement, regulatory reporting, and the **KYC/compliance** module.',
-          'Operated in production the platform that orchestrates **+USD $200M/month** in on-chain settlement — **~USD $1.83B cumulative** over 2.6 years, supporting **+100,000 end users** through B2B clients.',
-          'Led a team of **4–5 engineers** for 3+ years, reporting directly to the CTO, with active participation in hiring and in the critical technical decisions of the product.',
-        ],
-        stack: [
-          'TypeScript',
-          'Next.js',
-          'Fastify',
-          'Temporal.io',
-          'PostgreSQL',
-          'AWS EKS',
-          'Terraform',
+        summary: 'Stablecoin Settlement Layer for Latin America.',
+        paragraphs: [
+          'I was part of the team that built the **COPM, MXNM, and BRLM** stablecoins on multiple chains such as Polygon and Celo.',
+          'Our mission was to build the payment infrastructure for Latin America. We designed and built the systems, workflows, and architecture that moved real money: **over $200M** in the best month and **almost $2,000M** in total transactional volume.',
         ],
       },
       {
@@ -192,7 +167,6 @@ export const content: Record<Locale, LocalizedContent> = {
           'Built the **CI/CD pipelines on GitHub Actions** (lint, test, build, deploy), eliminating the team’s manual deploys.',
           'Raised automated **test coverage** by integrating pytest and Jest as a precondition for releases.',
         ],
-        stack: ['Python', 'Node.js', 'Redis', 'AWS', 'GitHub Actions'],
       },
       {
         company: 'Arvolution',
@@ -206,7 +180,6 @@ export const content: Record<Locale, LocalizedContent> = {
           'Built **Python ETL workflows on AWS Lambda** processing workplace-incident data, feeding regulatory reports and dashboards.',
           'Implemented **GraphQL APIs** backed by DynamoDB and S3 as the event-driven persistence layer.',
         ],
-        stack: ['Python', 'TypeScript', 'GraphQL', 'DynamoDB', 'AWS Lambda'],
       },
     ],
     projects: [
