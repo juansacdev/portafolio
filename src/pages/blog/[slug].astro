@@ -5,7 +5,11 @@ import BlogPost from '../../components/organisms/BlogPost.astro';
 import { identity } from '../../data/profile';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => data.lang === 'es');
+  // Drafts get no page at all; unlisted and published are accessible.
+  const posts = await getCollection(
+    'blog',
+    ({ data }) => data.lang === 'es' && data.status !== 'draft'
+  );
   return posts.map((post) => ({
     params: { slug: post.data.slug },
     props: { post },

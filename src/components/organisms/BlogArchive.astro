@@ -10,8 +10,12 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const posts = (await getCollection('blog', ({ data }) => data.lang === locale))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = (
+  await getCollection(
+    'blog',
+    ({ data }) => data.lang === locale && data.status === 'published'
+  )
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const blogBase = locale === 'es' ? '/blog' : '/en/blog';
 const homeUrl = locale === 'es' ? '/' : '/en/';

@@ -37,11 +37,20 @@ export interface ExperienceEntry {
   bullets?: string[];
 }
 
+/**
+ * Visibility of a piece of content.
+ * - draft: not listed anywhere and not accessible.
+ * - unlisted: not listed, but accessible by direct URL (where one exists).
+ * - published: listed and accessible.
+ */
+export type ContentStatus = 'draft' | 'unlisted' | 'published';
+
 export interface Project {
   name: string;
   description: string[];
   stack: string[];
   repoUrl?: string;
+  status: ContentStatus;
 }
 
 export interface LocalizedContent {
@@ -72,7 +81,7 @@ export const content: Record<Locale, LocalizedContent> = {
         summary: 'Stablecoin Settlement Layer para Latinoamérica.',
         paragraphs: [
           'Fui parte del equipo que desarrolló las stablecoins **COPM, MXNM y BRLM** sobre múltiples chains como Polygon y Celo.',
-          'Nuestra misión era construir la infraestructura de pagos para Latinoamérica. Diseñamos y construimos los sistemas, los workflows y la arquitectura que movió dinero real: **más de $300M** en el mejor mes y **más de $2,000M** en total, en volumen transaccional.',
+          'Nuestra misión era construir la infraestructura de pagos para Latinoamérica. Diseñamos y construimos los sistemas, los workflows y la arquitectura que movió dinero real: **más de US$300M** en el mejor mes y **más de $2,000M** en total, en volumen transaccional.',
           'El hito llegó a la prensa: [La República cubrió](https://www.larepublica.co/finanzas/como-hacer-transacciones-con-stablecoins-4221338) cuando el sistema superó los US$200M mensuales. Y como la blockchain es pública, [lo audité on-chain](https://github.com/juansacdev/copm-onchain-analysis): cada cifra es verificable.',
         ],
       },
@@ -110,6 +119,7 @@ export const content: Record<Locale, LocalizedContent> = {
           'Pipeline de visión por computadora end-to-end: detección y tracking de manos en tiempo real, clasificación de gestos con CNNs entrenadas sobre vocabulario LSC, y text-to-speech para cerrar el loop de comunicación sordo ↔ oyente.',
         ],
         stack: ['Python', 'TensorFlow', 'OpenCV', 'Computer Vision', 'CNNs'],
+        status: 'draft',
       },
       {
         name: 'Ajedrez multijugador online',
@@ -118,12 +128,13 @@ export const content: Record<Locale, LocalizedContent> = {
           'Sistema turn-based con visibilidad selectiva de jugadas — cada jugador ve únicamente sus movimientos posibles cuando es su turno — y manejo elegante de desconexiones durante la partida.',
         ],
         stack: ['JavaScript', 'WebSockets', 'Real-time'],
+        status: 'draft',
       },
     ],
     about: [
       'Me llamo Juan Sebastián Agudelo, pero puedes llamarme Juanse. ==Empecé a programar a los 19 años, haciendo un pivot a mi vida==: era estudiante becado de finanzas.',
       '==La curiosidad ha marcado mi vida desde siempre==, y fue lo que me motivó a aprender programación de manera autodidacta.',
-      'He trabajado para startups y grandes compañías. Entre mis éxitos: fui parte de —y lideré— un equipo pequeño (4~6 devs) que desarrolló una stablecoin (**COPM**) con peg 1:1 sobre las redes de Polygon y Celo. En su mejor mes movió **más de $300M** en volumen transaccional; en total, **más de $2B**. Sin ningún incidente y de manera segura.',
+      'He trabajado para startups y grandes compañías. Entre mis éxitos: fui parte de —y lideré— un equipo pequeño (4~6 devs) que desarrolló una stablecoin (**COPM**) con peg 1:1 sobre las redes de Polygon y Celo. En su mejor mes movió **más de US$300M** en volumen transaccional; en total, **más de $2B**. Sin ningún incidente y de manera segura.',
       'Escribo sobre lo que aprendo en el camino, porque *[enseñar es aprender dos veces](https://es.wikiquote.org/wiki/Joseph_Joubert)*.',
       '==Creo profundamente en la educación continua==, sea de la forma que sea —formal, en línea o autodidacta—, como manera de seguir creciendo a nivel personal y profesional.',
       'Creo firmemente en que ==el futuro siempre será mejor==. Es la única manera de construirlo.',
@@ -150,7 +161,7 @@ export const content: Record<Locale, LocalizedContent> = {
         summary: 'Stablecoin Settlement Layer for Latin America.',
         paragraphs: [
           'I was part of the team that built the **COPM, MXNM, and BRLM** stablecoins on multiple chains such as Polygon and Celo.',
-          'Our mission was to build the payment infrastructure for Latin America. We designed and built the systems, workflows, and architecture that moved real money: **over $300M** in the best month and **over $2,000M** in total transactional volume.',
+          'Our mission was to build the payment infrastructure for Latin America. We designed and built the systems, workflows, and architecture that moved real money: **over US$300M** in the best month and **over $2,000M** in total transactional volume.',
           'The milestone reached the press: [La República covered it](https://www.larepublica.co/finanzas/como-hacer-transacciones-con-stablecoins-4221338) when the system crossed US$200M monthly. And since the blockchain is public, [I audited it on-chain](https://github.com/juansacdev/copm-onchain-analysis): every figure is verifiable.',
         ],
       },
@@ -188,6 +199,7 @@ export const content: Record<Locale, LocalizedContent> = {
           'End-to-end computer vision pipeline: real-time hand detection and tracking, gesture classification with CNNs trained on LSC vocabulary, and text-to-speech to close the deaf ↔ hearing communication loop.',
         ],
         stack: ['Python', 'TensorFlow', 'OpenCV', 'Computer Vision', 'CNNs'],
+        status: 'draft',
       },
       {
         name: 'Online multiplayer chess',
@@ -196,12 +208,13 @@ export const content: Record<Locale, LocalizedContent> = {
           'Turn-based system with selective move visibility — each player only sees their own legal moves on their turn — and graceful disconnection handling throughout the match.',
         ],
         stack: ['JavaScript', 'WebSockets', 'Real-time'],
+        status: 'draft',
       },
     ],
     about: [
       "My name is Juan Sebastián Agudelo, but you can call me Juanse. ==I started programming at 19, pivoting my whole life==: I was a finance student on a scholarship.",
       "==Curiosity has shaped my life for as long as I can remember==, and it is what pushed me to learn programming on my own.",
-      'I have worked for startups and large companies. Among my wins: I was part of —and led— a small team (4~6 devs) that built a stablecoin (**COPM**) with a 1:1 peg on Polygon and Celo. In its best month it moved **over $300M** in transactional volume; in total, **over $2B**. Without a single incident, and securely.',
+      'I have worked for startups and large companies. Among my wins: I was part of —and led— a small team (4~6 devs) that built a stablecoin (**COPM**) with a 1:1 peg on Polygon and Celo. In its best month it moved **over US$300M** in transactional volume; in total, **over $2B**. Without a single incident, and securely.',
       'I write about what I learn along the way, because *[to teach is to learn twice](https://en.wikiquote.org/wiki/Joseph_Joubert)*.',
       '==I deeply believe in continuous education== in every form —formal, online, or self-taught— as the way to keep growing both personally and professionally.',
       'I firmly believe ==the future will always be better==. It is the only way to build it.',

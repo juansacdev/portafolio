@@ -13,6 +13,9 @@ const blog = defineCollection({
     translationSlug: z.string(),
     tags: z.array(z.string()).default([]),
     readingTime: z.string(),
+    // draft: not listed, no page built. unlisted: page built, not listed.
+    // published: listed and accessible.
+    status: z.enum(['draft', 'unlisted', 'published']).default('draft'),
   }),
 });
 

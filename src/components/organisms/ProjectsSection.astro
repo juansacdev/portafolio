@@ -10,9 +10,12 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const { projects } = content[locale];
+const projects = content[locale].projects.filter(
+  (p) => p.status === 'published'
+);
 ---
 
+{projects.length > 0 && (
 <section class="projects" aria-labelledby={anchors[locale].projects}>
   <SectionTitle id={anchors[locale].projects} icon="code">
     {t(locale, 'section.projects')}
@@ -22,6 +25,7 @@ const { projects } = content[locale];
     {projects.map((project) => <ProjectCard project={project} />)}
   </div>
 </section>
+)}
 
 <style>
   .projects {

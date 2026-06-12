@@ -14,7 +14,10 @@ const { locale } = Astro.props;
 const LATEST_COUNT = 3;
 
 const allPosts = (
-  await getCollection('blog', ({ data }) => data.lang === locale)
+  await getCollection(
+    'blog',
+    ({ data }) => data.lang === locale && data.status === 'published'
+  )
 ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const posts = allPosts.slice(0, LATEST_COUNT);
@@ -22,6 +25,7 @@ const posts = allPosts.slice(0, LATEST_COUNT);
 const blogBase = locale === 'es' ? '/blog' : '/en/blog';
 ---
 
+{posts.length > 0 && (
 <section class="blog" aria-labelledby={anchors[locale].blog}>
   <SectionTitle id={anchors[locale].blog} icon="pen">
     {t(locale, 'section.blog')}
@@ -47,6 +51,7 @@ const blogBase = locale === 'es' ? '/blog' : '/en/blog';
     {t(locale, 'blog.viewAll')} →
   </a>
 </section>
+)}
 
 <style>
   .blog {
