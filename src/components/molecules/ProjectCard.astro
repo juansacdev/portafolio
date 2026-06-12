@@ -69,6 +69,12 @@ const hasLinks = project.repoUrl || project.liveUrl;
     margin-block-end: 1rem;
   }
 
+  /* Pin tags (and buttons below them) to the card's bottom edge, so
+     sibling cards with different text lengths stay aligned. */
+  .project-card :global(.tag-list) {
+    margin-block-start: auto;
+  }
+
   .links {
     display: flex;
     gap: 0.75rem;
