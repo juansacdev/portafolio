@@ -85,7 +85,7 @@ export const content: Record<Locale, LocalizedContent> = {
         paragraphs: [
           'Fui parte del equipo que desarrolló las stablecoins **COPM, MXNM y BRLM** sobre múltiples chains como Polygon y Celo.',
           'Nuestra misión era construir la infraestructura de pagos para Latinoamérica. Diseñamos y construimos los sistemas, los workflows y la arquitectura que movió dinero real: **más de US$300M** en el mejor mes y **más de US$2,000M** en total, en volumen transaccional.',
-          'El hito llegó a la prensa: [La República cubrió](https://www.larepublica.co/finanzas/como-hacer-transacciones-con-stablecoins-4221338) cuando el sistema superó los US$200M mensuales. Y como la blockchain es pública, [lo audité on-chain](https://github.com/juansacdev/copm-onchain-analysis): cada cifra es verificable.',
+          'El hito llegó a la prensa: [La República cubrió](https://www.larepublica.co/finanzas/como-hacer-transacciones-con-stablecoins-4221338) cuando el sistema superó los US$200M mensuales. Y como la blockchain es pública, [lo audité on-chain](https://copm.juansac.dev): cada cifra es verificable.',
         ],
       },
       {
@@ -165,7 +165,7 @@ export const content: Record<Locale, LocalizedContent> = {
         paragraphs: [
           'I was part of the team that built the **COPM, MXNM, and BRLM** stablecoins on multiple chains such as Polygon and Celo.',
           'Our mission was to build the payment infrastructure for Latin America. We designed and built the systems, workflows, and architecture that moved real money: **over US$300M** in the best month and **over US$2,000M** in total transactional volume.',
-          'The milestone reached the press: [La República covered it](https://www.larepublica.co/finanzas/como-hacer-transacciones-con-stablecoins-4221338) when the system crossed US$200M monthly. And since the blockchain is public, [I audited it on-chain](https://github.com/juansacdev/copm-onchain-analysis): every figure is verifiable.',
+          'The milestone reached the press: [La República covered it](https://www.larepublica.co/finanzas/como-hacer-transacciones-con-stablecoins-4221338) when the system crossed US$200M monthly. And since the blockchain is public, [I audited it on-chain](https://copm.juansac.dev): every figure is verifiable.',
         ],
       },
       {
