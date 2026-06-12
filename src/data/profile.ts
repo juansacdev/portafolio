@@ -67,8 +67,8 @@ export const content: Record<Locale, LocalizedContent> = {
         company: 'Minteo · Fintech',
         role: 'Founding Software Engineer – Tech Lead',
         start: '2022-06',
-        end: '2026-05',
-        period: 'jun 2022 – may 2026',
+        end: '2026-06',
+        period: 'jun 2022 – jun 2026',
         summary: 'Stablecoin Settlement Layer para Latinoamérica.',
         paragraphs: [
           'Fui parte del equipo que desarrolló las stablecoins **COPM, MXNM y BRLM** sobre múltiples chains como Polygon y Celo.',
@@ -144,8 +144,8 @@ export const content: Record<Locale, LocalizedContent> = {
         company: 'Minteo · Fintech',
         role: 'Founding Software Engineer – Tech Lead',
         start: '2022-06',
-        end: '2026-05',
-        period: 'Jun 2022 – May 2026',
+        end: '2026-06',
+        period: 'Jun 2022 – Jun 2026',
         summary: 'Stablecoin Settlement Layer for Latin America.',
         paragraphs: [
           'I was part of the team that built the **COPM, MXNM, and BRLM** stablecoins on multiple chains such as Polygon and Celo.',
