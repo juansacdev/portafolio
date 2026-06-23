@@ -1,8 +1,7 @@
 ---
-import ContactLinks from '../molecules/ContactLinks.astro';
 import type { Locale } from '../../i18n/ui';
 import { t, anchors } from '../../i18n/ui';
-import { identity } from '../../data/profile';
+import { content, identity } from '../../data/profile';
 
 interface Props {
   locale: Locale;
@@ -10,43 +9,107 @@ interface Props {
 
 const { locale } = Astro.props;
 const year = new Date().getFullYear();
+const role = content[locale].hero.role;
+const handleUrl = `https://x.com/${identity.handle.replace('@', '')}`;
 ---
 
 <footer class="site-footer">
   <div class="inner">
-    <section aria-labelledby={anchors[locale].contact}>
-      <h2 id={anchors[locale].contact}>{t(locale, 'section.contact')}</h2>
-      <p>{t(locale, 'contact.intro')}</p>
-      <ContactLinks locale={locale} />
-    </section>
+    <div class="sign">
+      <p class="name">{identity.name}</p>
+      <p class="role">{role}</p>
+      <p class="copy">© {year} · {identity.location} · {t(locale, 'footer.rights')}</p>
+    </div>
 
-    <p class="colophon">
-      © {year} {identity.name}. {t(locale, 'footer.builtWith')}
-    </p>
+    <section class="links" aria-labelledby={anchors[locale].contact}>
+      <h2 id={anchors[locale].contact} class="visually-hidden">
+        {t(locale, 'section.contact')}
+      </h2>
+      <address>
+        <a href={`mailto:${identity.email}`}>{identity.email}</a>
+        <a href={identity.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <a href={identity.github} target="_blank" rel="noopener noreferrer">Github ↗</a>
+        <a href={handleUrl} target="_blank" rel="noopener noreferrer">{identity.handle} ↗</a>
+      </address>
+    </section>
   </div>
 </footer>
 
 <style>
   .site-footer {
+    position: relative;
     margin-block-start: var(--space-section);
   }
 
-  /* No top padding: the footer's margin already equals --space-section,
-     so the gap before "Contacto" matches the gap between sections. */
+  /* Separator line that fades out on both ends. */
+  .site-footer::before {
+    content: '';
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--color-border) 20%,
+      var(--color-border) 80%,
+      transparent
+    );
+  }
+
   .inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.75rem;
     max-width: var(--max-width);
     margin-inline: auto;
-    padding: 0 1.5rem 2.5rem;
+    padding: 3rem 1.5rem 3.5rem;
   }
 
-  h2 {
-    font-size: 1.25rem;
-    margin-block: 0 0.5rem;
+  .name {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
   }
 
-  .colophon {
-    margin-block: 2rem 0;
+  .role {
+    margin: 0.25rem 0 0;
     color: var(--color-text-muted);
-    font-size: 0.875rem;
+    font-size: 0.95rem;
+  }
+
+  .copy {
+    margin: 1.1rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  address {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    text-align: right;
+  }
+
+  address a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  address a:hover {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 40rem) {
+    address {
+      text-align: left;
+    }
   }
 </style>

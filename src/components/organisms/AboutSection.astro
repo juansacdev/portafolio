@@ -1,8 +1,9 @@
 ---
 import SectionTitle from '../atoms/SectionTitle.astro';
+import Avatar from '../atoms/Avatar.astro';
 import type { Locale } from '../../i18n/ui';
 import { t, anchors } from '../../i18n/ui';
-import { content } from '../../data/profile';
+import { content, identity } from '../../data/profile';
 import { emphasize } from '../../utils/emphasize';
 
 interface Props {
@@ -10,15 +11,44 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const { about } = content[locale];
+const { about, skills } = content[locale];
 ---
 
 <section class="about" aria-labelledby={anchors[locale].about}>
-  <SectionTitle id={anchors[locale].about} icon="user">
+  <SectionTitle id={anchors[locale].about}>
     {t(locale, 'section.about')}
   </SectionTitle>
 
-  {about.map((paragraph) => <p set:html={emphasize(paragraph)} />)}
+  <div class="grid">
+    <div class="aside">
+      <Avatar alt={t(locale, 'a11y.avatarAlt')} size={220} />
+      <div class="soc">
+        <a href={`mailto:${identity.email}`}>{identity.email}</a>
+        <a href={identity.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href={identity.github} target="_blank" rel="noopener noreferrer">Github</a>
+      </div>
+    </div>
+
+    <div class="body">
+      {about.map((paragraph) => <p set:html={emphasize(paragraph)} />)}
+
+      <div class="skills">
+        <h3>{t(locale, 'skills.title')}</h3>
+        {
+          skills.map((group) => (
+            <div class="sk">
+              <b>{group.area}</b>
+              <ul>
+                {group.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
@@ -26,12 +56,99 @@ const { about } = content[locale];
     padding-block-start: var(--space-section);
   }
 
-  p {
-    max-width: 40rem;
+  .grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 3rem;
+    align-items: start;
   }
 
-  p :global(strong) {
+  .aside :global(img) {
+    border-radius: 14px;
+  }
+
+  .soc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 1rem;
+    margin-block-start: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+  }
+
+  .soc a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .soc a:hover {
     color: var(--color-accent);
-    font-weight: 600;
+  }
+
+  .body p {
+    max-width: 75ch;
+  }
+
+  .body p :global(strong) {
+    color: inherit;
+    font-weight: inherit;
+  }
+
+  .skills {
+    margin-block-start: 2rem;
+  }
+
+  .skills h3 {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-muted);
+    margin: 0 0 1rem;
+  }
+
+  .sk {
+    padding-block: 0.85rem;
+    border-block-start: 1px solid var(--color-line-soft);
+  }
+
+  .sk b {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    margin-block-end: 0.6rem;
+  }
+
+  .sk ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sk li {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    background-color: var(--color-tag-bg);
+    border: 1px solid var(--color-line);
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+  }
+
+  @media (max-width: 48rem) {
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+
+    .aside {
+      max-width: 200px;
+    }
   }
 </style>

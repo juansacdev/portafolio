@@ -1,0 +1,235 @@
+---
+import type { Locale } from '../../i18n/ui';
+import { t, anchors } from '../../i18n/ui';
+import { content } from '../../data/profile';
+import { emphasize } from '../../utils/emphasize';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { caseStudy: cs } = content[locale];
+const a = anchors[locale];
+---
+
+<section class="case-study" aria-labelledby={a.caseStudy}>
+  <div class="band">
+    <div class="inner">
+      <p class="eyebrow">{t(locale, 'section.caseStudy')}</p>
+      <h2 id={a.caseStudy}>{cs.title}</h2>
+      <p class="intro">{cs.intro}</p>
+      <p class="role">
+        {cs.role}
+        <span class="verified">✓ {t(locale, 'cs.verified')}</span>
+      </p>
+
+      <div class="cols">
+        <div class="blk">
+          <h3>{t(locale, 'cs.problem')}</h3>
+          <p>{cs.problem}</p>
+        </div>
+        <div class="blk">
+          <h3>{t(locale, 'cs.built')}</h3>
+          <p set:html={emphasize(cs.built)} />
+        </div>
+      </div>
+
+      <div class="result">
+        <h3>{t(locale, 'cs.result')}</h3>
+        <p set:html={emphasize(cs.result)} />
+      </div>
+
+      <ul class="results" aria-label={t(locale, 'cs.results')}>
+        {
+          cs.results.map((r) => (
+            <li>
+              <span class="v">{r.value}</span>
+              <span class="k">{r.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <ul class="tags">
+        {cs.tags.map((tag) => <li>{tag}</li>)}
+      </ul>
+
+      <p class="more" set:html={emphasize(cs.more)} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .case-study {
+    padding-block-start: var(--space-section);
+  }
+
+  /* Light mint band — breaks full-bleed across the dark page, edge to edge.
+     left:50% + margin-left:-50vw anchors on the viewport center, so it works
+     regardless of <main>'s padding. body has overflow-x:hidden to absorb the
+     scrollbar gutter from 100vw. */
+  .band {
+    position: relative;
+    left: 50%;
+    width: 100vw;
+    margin-inline-start: -50vw;
+    background-color: var(--color-panel);
+    color: var(--color-panel-ink);
+    padding-block: clamp(3rem, 6vw, 5rem);
+  }
+
+  .inner {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-accent-deep);
+    margin: 0 0 1rem;
+  }
+
+  h2 {
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin: 0 0 1rem;
+  }
+
+  .intro {
+    font-size: 1.125rem;
+    max-width: 60ch;
+    color: #2c3b39;
+    margin: 0 0 0.4rem;
+  }
+
+  .role {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--color-panel-muted);
+    margin: 0 0 2.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .verified {
+    color: var(--color-accent-deep);
+    font-weight: 700;
+    background-color: #d6ebe5;
+    border: 1px solid #b9ddd4;
+    border-radius: 999px;
+    padding: 0.18rem 0.7rem;
+  }
+
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .blk h3,
+  .result h3 {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-panel-muted);
+    margin: 0 0 0.5rem;
+  }
+
+  .blk p,
+  .result p {
+    margin: 0;
+    font-size: 0.97rem;
+    color: #38463f;
+  }
+
+  .blk :global(strong),
+  .result :global(strong) {
+    color: var(--color-panel-ink);
+    font-weight: 700;
+  }
+
+  .result {
+    background-color: #e0eeea;
+    border: 1px solid var(--color-panel-line);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-block: 2.1rem;
+  }
+
+  .result h3 {
+    color: var(--color-accent-deep);
+  }
+
+  .results {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.9rem;
+    margin: 0 0 1.75rem;
+    padding: 0;
+  }
+
+  .results .v {
+    display: block;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-accent-deep);
+    line-height: 1;
+  }
+
+  .results .k {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-panel-muted);
+    margin-block-start: 0.5rem;
+  }
+
+  .tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tags li {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    background-color: #ffffff;
+    border: 1px solid var(--color-panel-line);
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    color: var(--color-panel-muted);
+  }
+
+  .more {
+    margin-block-start: 1.9rem;
+    margin-block-end: 0;
+    font-size: 0.95rem;
+    color: var(--color-panel-muted);
+  }
+
+  .more :global(a) {
+    color: var(--color-accent-deep);
+    font-weight: 600;
+  }
+
+  @media (max-width: 48rem) {
+    .cols,
+    .results {
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
+    }
+  }
+</style>

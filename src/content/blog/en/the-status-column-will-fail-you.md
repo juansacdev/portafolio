@@ -7,7 +7,7 @@ slug: the-status-column-will-fail-you
 translationSlug: la-columna-status-te-va-a-fallar
 tags: [fintech, event sourcing, ledger, architecture, backend]
 readingTime: '7 min read'
-status: draft
+status: published
 ---
 
 Nobody wants to open their bank account and see less money out of nowhere. Whether you are a bank, a payment processor, or an aggregator, the most important thing in a financial system is data consistency and integrity. The balance must never lie.

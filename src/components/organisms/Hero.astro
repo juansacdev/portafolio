@@ -1,9 +1,6 @@
 ---
-import Avatar from '../atoms/Avatar.astro';
-import AvailabilityBadge from '../atoms/AvailabilityBadge.astro';
-import ContactLinks from '../molecules/ContactLinks.astro';
 import type { Locale } from '../../i18n/ui';
-import { t } from '../../i18n/ui';
+import { t, anchors } from '../../i18n/ui';
 import { content, identity } from '../../data/profile';
 import { emphasize } from '../../utils/emphasize';
 
@@ -13,23 +10,24 @@ interface Props {
 
 const { locale } = Astro.props;
 const { hero } = content[locale];
+const a = anchors[locale];
 ---
 
 <section class="hero">
-  <div class="hero-top">
-    <Avatar alt={t(locale, 'a11y.avatarAlt')} size={128} />
+  <p class="kicker">{hero.role} · {identity.location}</p>
+  <h1 set:html={emphasize(hero.headline)} />
 
-    <div class="hero-heading">
-      <AvailabilityBadge locale={locale} variant="shimmer" />
-      <h1 set:html={emphasize(hero.title)} />
-      <p class="role">{hero.role} · {identity.location}</p>
-    </div>
+  <div class="lede">
+    {hero.lede.map((line) => <p set:html={emphasize(line)} />)}
   </div>
 
-  <div class="hero-body">
-    {hero.tagline.map((line) => <p class="tagline" set:html={emphasize(line)} />)}
+  <ul class="focus">
+    {hero.focus.map((item) => <li>{item}</li>)}
+  </ul>
 
-    <ContactLinks locale={locale} />
+  <div class="cta-group">
+    <a class="cta" href={`mailto:${identity.email}`}>{t(locale, 'hero.talk')} →</a>
+    <a class="cta-2" href={`#${a.caseStudy}`}>{t(locale, 'hero.seeCase')} ↓</a>
   </div>
 </section>
 
@@ -38,51 +36,104 @@ const { hero } = content[locale];
     padding-block: var(--space-hero) 0;
   }
 
-  .hero-top {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-block-end: 2.75rem;
-  }
-
-  .hero-heading > :global(.availability) {
-    margin-block-end: 0.9rem;
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 1.1rem;
   }
 
   h1 {
-    font-size: clamp(1.75rem, 5vw, 2.5rem);
-    margin-block: 0 0.25rem;
+    font-size: clamp(2.1rem, 5.2vw, 3.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.07;
+    margin: 0 0 1.6rem;
+    max-width: 22ch;
   }
 
-  h1 :global(strong) {
+  h1 :global(em) {
+    font-style: normal;
     color: var(--color-accent);
   }
 
-  .role {
+  .lede {
+    font-size: 1.125rem;
     color: var(--color-text-muted);
-    font-weight: 500;
-    margin-block: 0;
+    max-width: 58ch;
   }
 
-  .tagline {
-    max-width: 38rem;
-    font-size: 1.125rem; /* 18px */
+  .lede :global(p) {
+    margin: 0 0 0.95rem;
   }
 
-  .tagline :global(strong) {
-    color: var(--color-accent);
+  .lede :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .lede :global(strong) {
+    color: var(--color-text);
     font-weight: 600;
   }
 
-  .hero-body > :global(address) {
-    margin-block-start: 2.25rem;
+  .lede :global(a) {
+    color: var(--color-accent);
   }
 
-  @media (max-width: 40rem) {
-    .hero-top {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.5rem;
-    }
+  .focus {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 2rem 0 0;
+    padding: 0;
+  }
+
+  .focus li {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-text);
+    background-color: var(--color-tag-bg);
+    border: 1px solid var(--color-line);
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+  }
+
+  .cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.1rem;
+    margin-block-start: 1.9rem;
+  }
+
+  .cta {
+    display: inline-block;
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.4rem;
+    border-radius: 10px;
+    transition: background-color 0.15s ease;
+  }
+
+  .cta:hover {
+    background-color: var(--color-accent-strong);
+  }
+
+  .cta-2 {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .cta-2:hover {
+    color: var(--color-accent);
   }
 </style>

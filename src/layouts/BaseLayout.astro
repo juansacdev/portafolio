@@ -1,4 +1,5 @@
 ---
+import '@fontsource-variable/public-sans';
 import '../styles/global.css';
 import SiteHeader from '../components/organisms/SiteHeader.astro';
 import SiteFooter from '../components/organisms/SiteFooter.astro';
@@ -25,33 +26,12 @@ const currentPath = Astro.url.pathname;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#0f1517" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" hreflang={altLocale} href={altUrl} />
     <link rel="alternate" hreflang={locale} href={currentPath} />
     <title>{title}</title>
-
-    <!-- Theme resolution before first paint, to avoid a flash of the wrong
-         theme. Three modes: 'system' (default, follows the OS live),
-         'light', and 'dark'. The resolved theme lands in data-theme; the
-         chosen mode in data-theme-mode (used by the toggle icon). -->
-    <script is:inline>
-      (() => {
-        const media = window.matchMedia('(prefers-color-scheme: dark)');
-
-        const apply = () => {
-          const stored = localStorage.getItem('theme-mode');
-          const mode = stored === 'dark' || stored === 'light' ? stored : 'system';
-          const theme = mode === 'system' ? (media.matches ? 'dark' : 'light') : mode;
-          document.documentElement.dataset.themeMode = mode;
-          document.documentElement.dataset.theme = theme;
-        };
-
-        apply();
-        media.addEventListener('change', apply);
-        window.applyTheme = apply;
-      })();
-    </script>
   </head>
   <body>
     <SiteHeader locale={locale} altUrl={altUrl} homeUrl={homeUrl} />

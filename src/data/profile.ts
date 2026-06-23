@@ -7,34 +7,64 @@ import type { Locale } from '../i18n/ui'
 export const identity = {
   name: 'Juan Sebastián Agudelo',
   nickname: 'Juanse',
-  email: 'juansac.me@gmail.com',
+  email: 'hey@juansac.dev',
   github: 'https://github.com/juansacdev',
   linkedin: 'https://www.linkedin.com/in/juansacdev',
   handle: '@juansacdev',
   location: 'Bogotá, Colombia',
-} as const;
+} as const
 
 /* ==========================================================================
    Localized content
    ========================================================================== */
 
 export interface Hero {
-  /** Main heading; supports **markers** for accent color. */
-  title: string;
-  role: string;
-  tagline: string[];
+  /** Role label, reused in the header kicker and the footer signature. */
+  role: string
+  /** Big headline; *italic* marks the accent word. */
+  headline: string
+  /** Intro paragraphs; supports **bold** / ==mark== / [link](url). */
+  lede: string[]
+  /** Short focus chips under the lede. */
+  focus: string[]
+}
+
+export interface CaseStudyResult {
+  value: string
+  label: string
+}
+
+export interface CaseStudy {
+  title: string
+  /** One-line meta: role · company · dates · scale. */
+  role: string
+  intro: string
+  problem: string
+  /** Supports **bold** markers. */
+  built: string
+  /** The headline result; supports **bold** markers. */
+  result: string
+  results: CaseStudyResult[]
+  tags: string[]
+  /** Closing line; supports [link](url) via emphasize. */
+  more: string
+}
+
+export interface SkillGroup {
+  area: string
+  items: string[]
 }
 
 export interface ExperienceEntry {
-  company: string;
-  role: string;
-  start: string; // ISO date for <time datetime>
-  end: string;
-  period: string; // human-readable range
-  summary: string;
+  company: string
+  role: string
+  start: string // ISO date for <time datetime>
+  end: string
+  period: string // human-readable range
+  summary: string
   /** Narrative paragraphs. Takes precedence over bullets when present. */
-  paragraphs?: string[];
-  bullets?: string[];
+  paragraphs?: string[]
+  bullets?: string[]
 }
 
 /**
@@ -43,36 +73,59 @@ export interface ExperienceEntry {
  * - unlisted: not listed, but accessible by direct URL (where one exists).
  * - published: listed and accessible.
  */
-export type ContentStatus = 'draft' | 'unlisted' | 'published';
+export type ContentStatus = 'draft' | 'unlisted' | 'published'
 
 export interface Project {
-  name: string;
-  description: string[];
-  stack: string[];
+  name: string
+  description: string[]
+  stack: string[]
   /** Source code repository. */
-  repoUrl?: string;
+  repoUrl?: string
   /** Live deployment of the project. */
-  liveUrl?: string;
-  status: ContentStatus;
+  liveUrl?: string
+  status: ContentStatus
 }
 
 export interface LocalizedContent {
-  hero: Hero;
-  experience: ExperienceEntry[];
-  projects: Project[];
-  about: string[];
+  hero: Hero
+  caseStudy: CaseStudy
+  experience: ExperienceEntry[]
+  projects: Project[]
+  skills: SkillGroup[]
+  about: string[]
 }
 
 export const content: Record<Locale, LocalizedContent> = {
   es: {
     hero: {
-      title: 'Hey, soy **Juanse**',
-      role: 'Distributed Systems & Architecture · AI/ML',
-      tagline: [
-        '+6 años de experiencia. Software Engineer autodidacta enfocado en arquitectura, diseño y escalamiento de sistemas distribuidos.',
-        '**AI-first**: diseño specs y harnesses para LLMs y agentes.',
-        '**Aprendo en público**: escribo explainers de cómo funcionan las cosas por detrás.',
+      role: 'Senior Software Engineer',
+      headline:
+        'Diseño, construyo y opero sistemas distribuidos — ahora también con *LLMs*',
+      lede: [
+        'Soy **Juanse**, Senior Software Engineer con +6 años de experiencia. Diseño, construyo y escalo sistemas distribuidos: robustos, resilientes y seguros.',
+        'Trabajo **AI-first**, y eso va en dos vías. **Construyo con AI**: integro LLMs y agentes en mi flujo de trabajo para desarrollar. Y **construyo AI**: diseño productos AI-native —LLMs y agentes en el core— de la spec al eval, hasta producción.',
+        'Antes fui founding engineer y tech lead en una fintech: parte del equipo que construyó sus stablecoins sobre Polygon y Celo. Movieron **+US$2,000M** sin un solo incidente.',
       ],
+      focus: ['Sistemas distribuidos', 'LLMs & AI/ML', 'Arquitectura de software'],
+    },
+    caseStudy: {
+      title: 'Minteo — Stablecoin Settlement Layer',
+      role: 'Founding Software Engineer · Tech Lead · 2022–2026 · 3 stablecoins en producción',
+      intro:
+        'La infraestructura de pagos con stablecoins para Latinoamérica. Fui parte del equipo —y lo lideré— que la construyó de cero.',
+      problem:
+        'Mover dinero entre países en LatAm es lento y caro. Hacía falta un riel de settlement instantáneo y barato, respaldado 1:1 y operable a escala. Sin margen de error: en un sistema financiero, cada peso tiene que cuadrar.',
+      built:
+        'Diseñé y construí los sistemas, workflows y la arquitectura de las stablecoins **COPM, MXNM y BRLM** sobre Polygon y Celo: el flujo de mint/burn, el settlement entre empresas y la operación que movió dinero real a escala — segura y multi-chain.',
+      result:
+        'En su mejor mes movió **+US$300M** en volumen transaccional, y **+US$2,000M** en total — sin un solo incidente. El hito llegó a la prensa: La República lo cubrió al superar los US$200M mensuales.',
+      results: [
+        { value: '+US$2,000M', label: 'volumen transaccional total' },
+        { value: '+US$300M', label: 'volumen en el mejor mes' },
+        { value: '0', label: 'incidentes con el dinero' },
+      ],
+      tags: ['Distributed Systems', 'Polygon', 'Celo', 'Node.js', 'Event Sourcing', 'Architecture'],
+      more: 'La blockchain es pública, así que puedes [ver la auditoría on-chain →](https://copm.juansac.dev): cada cifra es verificable.',
     },
     experience: [
       {
@@ -121,7 +174,7 @@ export const content: Record<Locale, LocalizedContent> = {
           'Auditoría reproducible de la stablecoin que ayudé a construir en Minteo: 317,696 eventos Transfer escaneados directo de Polygon y Celo vía RPC, ~US$2,046 millones en volumen verificado contra la chain en vivo.',
           'Por NDA no puedo mostrar el código de la empresa — pero la blockchain es pública. Pipeline propio de scanning (sin indexers ni APIs de terceros), validación automatizada, charts SVG generados desde cero y la historia contada para cualquier público.',
         ],
-        stack: ['Node.js', 'Astro','Polygon', 'Celo', 'Data Engineering', 'Data Analysis', 'ETL'],
+        stack: ['Node.js', 'Astro', 'Polygon', 'Celo', 'Data Engineering', 'Data Analysis', 'ETL'],
         repoUrl: 'https://github.com/juansacdev/copm-onchain-analysis',
         liveUrl: 'https://copm.juansac.dev',
         status: 'published',
@@ -145,6 +198,24 @@ export const content: Record<Locale, LocalizedContent> = {
         status: 'draft',
       },
     ],
+    skills: [
+      {
+        area: 'AI engineering',
+        items: ['Prompt & context eng.', 'Evals', 'RAG', 'Specs & harnesses', 'AI Agents'],
+      },
+      {
+        area: 'Sistemas distribuidos',
+        items: ['Arquitectura', 'Event Driven', 'Event sourcing', 'Ledgers', "Temporal"],
+      },
+      {
+        area: 'Stack',
+        items: ['Python', 'TypeScript', 'PostgreSQL', 'DynamoDB', 'GraphQL', 'REST APIs'],
+      },
+      {
+        area: 'Infraestructura',
+        items: ['AWS', 'Docker', 'Kubernetes', 'Terraform'],
+      },
+    ],
     about: [
       'Me llamo Juan Sebastián Agudelo, pero puedes llamarme Juanse. ==Empecé a programar a los 19 años, haciendo un pivot a mi vida==: era estudiante becado de finanzas.',
       '==La curiosidad ha marcado mi vida desde siempre==, y fue lo que me motivó a aprender programación de manera autodidacta.',
@@ -157,13 +228,34 @@ export const content: Record<Locale, LocalizedContent> = {
   },
   en: {
     hero: {
-      title: "Hey, I'm **Juanse**",
-      role: 'Distributed Systems & Architecture · AI/ML',
-      tagline: [
-        '+6 years of experience. Self-taught Software Engineer focused on the architecture, design, and scaling of distributed systems.',
-        '**AI-first**: I design specs and harnesses for LLMs and agents.',
-        '**I learn in public**: I write explainers on how things work under the hood.',
+      role: 'Senior Software Engineer',
+      headline:
+        'I design, build, and operate distributed systems — now with *LLMs* too',
+      lede: [
+        "I'm **Juanse**, a Senior Software Engineer with 6+ years of experience. I design, build, and scale distributed systems: robust, resilient, and secure.",
+        'I work **AI-first**, and that goes two ways. **I build with AI**: I bring LLMs and agents into my workflow to develop. And **I build AI**: I design AI-native products —LLMs and agents at the core— from spec to eval, all the way to production.',
+        'Before that I was a founding engineer and tech lead at a fintech: part of the team that built its stablecoins on Polygon and Celo. They moved **+US$2,000M** without a single incident.',
       ],
+      focus: ['Distributed systems', 'LLMs & AI/ML', 'Software architecture'],
+    },
+    caseStudy: {
+      title: 'Minteo — Stablecoin Settlement Layer',
+      role: 'Founding Software Engineer · Tech Lead · 2022–2026 · 3 stablecoins in production',
+      intro:
+        'The stablecoin payment infrastructure for Latin America. I was part of the team —and led it— that built it from scratch.',
+      problem:
+        'Moving money across borders in LatAm is slow and expensive. It needed an instant, cheap settlement rail, backed 1:1 and operable at scale. With no margin for error: in a financial system, every cent has to reconcile.',
+      built:
+        'I designed and built the systems, workflows, and architecture of the **COPM, MXNM, and BRLM** stablecoins on Polygon and Celo: the mint/burn flow, settlement between companies, and the operation that moved real money at scale — secure and multi-chain.',
+      result:
+        'In its best month it moved **+US$300M** in transactional volume, and **+US$2,000M** in total — without a single incident. The milestone reached the press: La República covered it when it crossed US$200M monthly.',
+      results: [
+        { value: '+US$2,000M', label: 'total transactional volume' },
+        { value: '+US$300M', label: 'volume in the best month' },
+        { value: '0', label: 'money incidents' },
+      ],
+      tags: ['Distributed Systems', 'Polygon', 'Celo', 'Node.js', 'Event Sourcing', 'Architecture'],
+      more: 'The blockchain is public, so you can [see the on-chain audit →](https://copm.juansac.dev): every figure is verifiable.',
     },
     experience: [
       {
@@ -236,6 +328,20 @@ export const content: Record<Locale, LocalizedContent> = {
         status: 'draft',
       },
     ],
+    skills: [
+      {
+        area: 'AI engineering',
+        items: ['Prompt & context eng.', 'Evals', 'RAG', 'Specs & harnesses', 'AI Agents'],
+      },
+      {
+        area: 'Distributed systems',
+        items: ['Architecture', 'Event Driven', 'Event sourcing', 'Ledgers', "Temporal"],
+      },
+      {
+        area: 'Stack',
+        items: ['Python', 'TypeScript', 'GraphQL', 'PostgreSQL', 'DynamoDB', 'Docker', 'Kubernetes', 'Terraform'],
+      },
+    ],
     about: [
       "My name is Juan Sebastián Agudelo, but you can call me Juanse. ==I started programming at 19, pivoting my whole life==: I was a finance student on a scholarship.",
       "==Curiosity has shaped my life for as long as I can remember==, and it is what pushed me to learn programming on my own.",
@@ -246,4 +352,4 @@ export const content: Record<Locale, LocalizedContent> = {
       '*Muss es sein?* *Es muss sein!*',
     ],
   },
-};
+}

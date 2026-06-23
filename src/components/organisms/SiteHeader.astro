@@ -1,10 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
-import ThemeToggle from '../atoms/ThemeToggle.astro';
 import LanguageSwitch from '../atoms/LanguageSwitch.astro';
 import type { Locale } from '../../i18n/ui';
 import { t, anchors } from '../../i18n/ui';
-import { content } from '../../data/profile';
+import { content, identity } from '../../data/profile';
 
 interface Props {
   locale: Locale;
@@ -31,8 +30,14 @@ const hasBlog = publishedPosts.length > 0;
 
 <header class="site-header">
   <div class="inner">
+    <a class="brand" href={homeUrl} aria-label={`${identity.nickname} — ${t(locale, 'nav.home')}`}>
+      <span class="brand-badge" aria-hidden="true">JS</span>
+      <span class="brand-name">{identity.nickname}</span>
+    </a>
+
     <nav aria-label={t(locale, 'nav.label')}>
       <ul class="nav-list">
+        <li><a href={`${homeUrl}#${a.caseStudy}`}>{t(locale, 'nav.caseStudy')}</a></li>
         <li><a href={`${homeUrl}#${a.experience}`}>{t(locale, 'nav.experience')}</a></li>
         {hasProjects && (
           <li><a href={`${homeUrl}#${a.projects}`}>{t(locale, 'nav.projects')}</a></li>
@@ -44,16 +49,16 @@ const hasBlog = publishedPosts.length > 0;
       </ul>
     </nav>
 
-    <span class="divider" aria-hidden="true"></span>
-
     <div class="controls">
+      <span class="avail">
+        <i aria-hidden="true"></i>{t(locale, 'nav.available')}
+      </span>
       <LanguageSwitch
         href={altUrl}
         targetLocale={targetLocale}
         label={t(locale, 'lang.switch')}
         shortLabel={t(locale, 'lang.switchShort')}
       />
-      <ThemeToggle label={t(locale, 'theme.toggle')} />
     </div>
   </div>
 </header>
@@ -117,7 +122,7 @@ const hasBlog = publishedPosts.length > 0;
     position: sticky;
     top: 0;
     z-index: 10;
-    background-color: color-mix(in srgb, var(--color-bg) 85%, transparent);
+    background-color: color-mix(in srgb, var(--color-bg) 82%, transparent);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
@@ -129,13 +134,13 @@ const hasBlog = publishedPosts.length > 0;
     inset-block-end: 0;
     inset-inline: 0;
     margin-inline: auto;
-    width: min(80%, var(--max-width));
+    width: min(92%, var(--max-width));
     height: 1px;
     background: linear-gradient(
       to right,
       transparent,
-      var(--color-border) 25%,
-      var(--color-border) 75%,
+      var(--color-line) 25%,
+      var(--color-line) 75%,
       transparent
     );
     opacity: 0;
@@ -147,14 +152,46 @@ const hasBlog = publishedPosts.length > 0;
   }
 
   .inner {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: center;
     gap: 0.5rem 1rem;
     max-width: var(--max-width);
     margin-inline: auto;
     padding: 0.85rem 1.5rem;
+  }
+
+  .brand {
+    justify-self: start;
+  }
+
+  nav {
+    justify-self: center;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+  }
+
+  .brand-badge {
+    display: grid;
+    place-items: center;
+    min-width: 1.9rem;
+    height: 1.75rem;
+    padding-inline: 0.35rem;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 7px;
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
   }
 
   .nav-list {
@@ -176,31 +213,58 @@ const hasBlog = publishedPosts.length > 0;
   }
 
   .nav-list a:hover {
-    color: var(--color-accent-strong);
+    color: var(--color-accent);
   }
 
   .nav-list a[aria-current='true'] {
     background-color: var(--color-tag-bg);
-    color: var(--color-tag-text);
+    color: var(--color-accent);
     font-weight: 600;
-  }
-
-  .divider {
-    width: 1px;
-    height: 1.4rem;
-    background-color: var(--color-text-muted);
-    opacity: 0.6;
   }
 
   .controls {
     display: flex;
     align-items: center;
+    gap: 1rem;
+    justify-self: end;
+  }
+
+  .avail {
+    display: inline-flex;
+    align-items: center;
     gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-accent);
+  }
+
+  .avail i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--color-available);
+  }
+
+  @media (max-width: 48rem) {
+    .avail {
+      display: none;
+    }
   }
 
   @media (max-width: 40rem) {
     .inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
       justify-content: space-between;
+      gap: 0.4rem 1rem;
+    }
+    nav {
+      order: 3;
+      flex-basis: 100%;
+    }
+    .nav-list {
+      justify-content: center;
     }
   }
 </style>

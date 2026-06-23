@@ -27,7 +27,7 @@ const blogBase = locale === 'es' ? '/blog' : '/en/blog';
 
 {posts.length > 0 && (
 <section class="blog" aria-labelledby={anchors[locale].blog}>
-  <SectionTitle id={anchors[locale].blog} icon="pen">
+  <SectionTitle id={anchors[locale].blog}>
     {t(locale, 'section.blog')}
   </SectionTitle>
 
