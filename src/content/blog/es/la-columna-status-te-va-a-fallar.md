@@ -7,7 +7,7 @@ slug: la-columna-status-te-va-a-fallar
 translationSlug: the-status-column-will-fail-you
 tags: [fintech, event sourcing, ledger, arquitectura, backend]
 readingTime: '7 min de lectura'
-status: published
+status: draft
 ---
 
 Ninguno quiere entrar a su cuenta bancaria y ver que de la nada tiene menos dinero. Ya sea un banco, un procesador de pagos o un agregador, lo más importante en un sistema financiero es la consistencia e integridad de los datos. Que el saldo nunca mienta.
