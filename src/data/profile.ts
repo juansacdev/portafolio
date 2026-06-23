@@ -177,7 +177,7 @@ export const content: Record<Locale, LocalizedContent> = {
         stack: ['Node.js', 'Astro', 'Polygon', 'Celo', 'Data Engineering', 'Data Analysis', 'ETL'],
         repoUrl: 'https://github.com/juansacdev/copm-onchain-analysis',
         liveUrl: 'https://copm.juansac.dev',
-        status: 'published',
+        status: 'draft',
       },
       {
         name: 'Detección de Lengua de Señas Colombiana en tiempo real',
@@ -307,7 +307,7 @@ export const content: Record<Locale, LocalizedContent> = {
         stack: ['Node.js', 'Astro', 'Polygon', 'Celo', 'Data Engineering', 'Data Analysis', 'ETL'],
         repoUrl: 'https://github.com/juansacdev/copm-onchain-analysis',
         liveUrl: 'https://copm.juansac.dev',
-        status: 'published',
+        status: 'draft',
       },
       {
         name: 'Real-time Colombian Sign Language detection',
