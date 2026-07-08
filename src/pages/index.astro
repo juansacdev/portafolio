@@ -9,14 +9,14 @@ import AboutSection from '../components/organisms/AboutSection.astro';
 import { t } from '../i18n/ui';
 import { identity } from '../data/profile';
 
-const locale = 'es';
+const locale = 'en';
 ---
 
 <BaseLayout
   locale={locale}
   title={`${identity.name} — Software Engineer`}
   description={t(locale, 'meta.description')}
-  altUrl="/en/"
+  altUrl="/es/"
 >
   <Hero locale={locale} />
   <CaseStudySection locale={locale} />
