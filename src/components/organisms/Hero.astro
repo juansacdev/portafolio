@@ -21,10 +21,6 @@ const a = anchors[locale];
     {hero.lede.map((line) => <p set:html={emphasize(line)} />)}
   </div>
 
-  <ul class="focus">
-    {hero.focus.map((item) => <li>{item}</li>)}
-  </ul>
-
   <div class="cta-group">
     <a class="cta" href={`mailto:${identity.email}`}>{t(locale, 'hero.talk')} →</a>
     <a class="cta-2" href={`#${a.caseStudy}`}>{t(locale, 'hero.seeCase')} ↓</a>
@@ -82,31 +78,12 @@ const a = anchors[locale];
     color: var(--color-accent);
   }
 
-  .focus {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 2rem 0 0;
-    padding: 0;
-  }
-
-  .focus li {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--color-text);
-    background-color: var(--color-tag-bg);
-    border: 1px solid var(--color-line);
-    padding: 0.45rem 0.9rem;
-    border-radius: 999px;
-  }
-
   .cta-group {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 1.1rem;
-    margin-block-start: 1.9rem;
+    margin-block-start: 2rem;
   }
 
   .cta {

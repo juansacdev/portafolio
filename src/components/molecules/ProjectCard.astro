@@ -1,5 +1,4 @@
 ---
-import TagList from './TagList.astro';
 import type { Project } from '../../data/profile';
 
 interface Props {
@@ -14,8 +13,6 @@ const hasLinks = project.repoUrl || project.liveUrl;
   <h3>{project.name}</h3>
 
   {project.description.map((paragraph) => <p>{paragraph}</p>)}
-
-  <TagList tags={project.stack} />
 
   {
     hasLinks && (
@@ -69,16 +66,12 @@ const hasLinks = project.repoUrl || project.liveUrl;
     margin-block-end: 1rem;
   }
 
-  /* Pin tags (and buttons below them) to the card's bottom edge, so
-     sibling cards with different text lengths stay aligned. */
-  .project-card :global(.tag-list) {
-    margin-block-start: auto;
-  }
-
+  /* Pin the link buttons to the card's bottom edge, so sibling cards with
+     different text lengths stay aligned. */
   .links {
     display: flex;
     gap: 0.75rem;
-    margin-block-start: 1.25rem;
+    margin-block-start: auto;
   }
 
   .btn {
