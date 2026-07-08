@@ -11,30 +11,23 @@ const { entry } = Astro.props;
 
 <article class="experience-item">
   <header class="experience-header">
-    <h3>{entry.role} · {entry.company}</h3>
+    <h3>{entry.role}</h3>
     <p class="period">
-      <time datetime={entry.start}>{entry.period.split(' – ')[0]}</time>
-      {' – '}
-      <time datetime={entry.end}>{entry.period.split(' – ')[1]}</time>
+      <time datetime={entry.start}>{entry.period}</time>
     </p>
   </header>
 
+  <p class="company-line">
+    {entry.sector ? `${entry.company} – ${entry.sector}` : entry.company}
+  </p>
 
-  <p class="summary">{entry.summary}</p>
+  <ul class="bullets">
+    {entry.bullets.map((bullet) => (
+      <li>{bullet}</li>
+    ))}
+  </ul>
 
-  {
-    entry.paragraphs ? (
-      entry.paragraphs.map((paragraph) => (
-        <p class="narrative" set:html={emphasize(paragraph)} />
-      ))
-    ) : (
-      <ul class="bullets">
-        {(entry.bullets ?? []).map((bullet) => (
-          <li set:html={emphasize(bullet)} />
-        ))}
-      </ul>
-    )
-  }
+  {entry.note && <p class="note" set:html={emphasize(entry.note)} />}
 </article>
 
 <style>
@@ -75,33 +68,32 @@ const { entry } = Astro.props;
   }
 
   .experience-header {
-    margin-block-end: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+    margin-block-end: 0.3rem;
   }
 
   h3 {
     font-size: 1.25rem; /* 20px */
+    font-weight: 700;
     margin: 0;
   }
 
   .period {
-    margin: 0.2rem 0 0;
+    margin: 0;
     color: var(--color-text-muted);
     font-family: var(--font-mono);
     font-size: 0.8rem;
+    white-space: nowrap;
   }
 
-  .summary {
+  .company-line {
+    margin: 0 0 0.85rem;
     color: var(--color-text-muted);
     font-size: 0.95rem;
-  }
-
-  .narrative:last-child {
-    margin-block-end: 0;
-  }
-
-  .narrative :global(strong) {
-    color: inherit;
-    font-weight: inherit;
   }
 
   .bullets {
@@ -111,8 +103,13 @@ const { entry } = Astro.props;
     gap: 0.5rem;
   }
 
-  .bullets :global(strong) {
-    color: inherit;
-    font-weight: inherit;
+  .note {
+    margin-block: 0.85rem 0;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  .note :global(a) {
+    color: var(--color-accent);
   }
 </style>
