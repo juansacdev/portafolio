@@ -2,7 +2,7 @@
 import SectionTitle from '../atoms/SectionTitle.astro';
 import BlogCard from '../molecules/BlogCard.astro';
 import type { Locale } from '../../i18n/ui';
-import { t, anchors } from '../../i18n/ui';
+import { t, anchors, localePath } from '../../i18n/ui';
 import { getCollection } from 'astro:content';
 
 interface Props {
@@ -22,7 +22,7 @@ const allPosts = (
 
 const posts = allPosts.slice(0, LATEST_COUNT);
 
-const blogBase = locale === 'en' ? '/blog' : '/es/blog';
+const blogBase = localePath(locale, '/blog');
 ---
 
 {posts.length > 0 && (

@@ -95,6 +95,25 @@ export function t(locale: Locale, key: UIKey): string {
   return ui[locale][key];
 }
 
+/** The other locale — used for language-switch and hreflang links. */
+export function altLocale(locale: Locale): Locale {
+  return locale === 'es' ? 'en' : 'es';
+}
+
+/** BCP-47 tags for date formatting and metadata. */
+export const localeTags = {
+  es: 'es-CO',
+  en: 'en-US',
+} as const satisfies Record<Locale, string>;
+
+/**
+ * Prefix a site-relative path for the locale.
+ * English is the default locale and lives at the root; Spanish under /es/.
+ */
+export function localePath(locale: Locale, path = '/'): string {
+  return locale === 'en' ? path : `/es${path}`;
+}
+
 /** Section anchor ids, localized so URLs read naturally in each language. */
 export const anchors = {
   es: {
