@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import LanguageSwitch from '../atoms/LanguageSwitch.astro';
 import type { Locale } from '../../i18n/ui';
-import { t, anchors } from '../../i18n/ui';
+import { t, anchors, altLocale } from '../../i18n/ui';
 import { content, identity } from '../../data/profile';
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const { locale, altUrl, homeUrl } = Astro.props;
-const targetLocale: Locale = locale === 'es' ? 'en' : 'es';
+const targetLocale: Locale = altLocale(locale);
 const a = anchors[locale];
 
 // Nav links only exist for sections with published content.

@@ -1,7 +1,7 @@
 ---
 import TagList from './TagList.astro';
 import type { Locale } from '../../i18n/ui';
-import { t } from '../../i18n/ui';
+import { t, localeTags } from '../../i18n/ui';
 
 interface Props {
   locale: Locale;
@@ -18,10 +18,12 @@ const { locale, url, title, description, pubDate, readingTime, tags } =
 
 // timeZone UTC: frontmatter dates parse as UTC midnight; formatting in a
 // negative-offset zone would shift them one day back.
-const formattedDate = pubDate.toLocaleDateString(
-  locale === 'es' ? 'es-CO' : 'en-US',
-  { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }
-);
+const formattedDate = pubDate.toLocaleDateString(localeTags[locale], {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
 ---
 
 <article class="blog-card">

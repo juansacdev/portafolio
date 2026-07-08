@@ -3,7 +3,7 @@ import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import TagList from '../molecules/TagList.astro';
 import type { Locale } from '../../i18n/ui';
-import { t } from '../../i18n/ui';
+import { t, localeTags, localePath } from '../../i18n/ui';
 
 interface Props {
   locale: Locale;
@@ -15,12 +15,14 @@ const { Content } = await render(post);
 
 // timeZone UTC: frontmatter dates parse as UTC midnight; formatting in a
 // negative-offset zone would shift them one day back.
-const formattedDate = post.data.pubDate.toLocaleDateString(
-  locale === 'es' ? 'es-CO' : 'en-US',
-  { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }
-);
+const formattedDate = post.data.pubDate.toLocaleDateString(localeTags[locale], {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
 
-const homeUrl = locale === 'en' ? '/' : '/es/';
+const homeUrl = localePath(locale);
 ---
 
 <article class="blog-post">

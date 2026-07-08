@@ -4,6 +4,7 @@ import '../styles/global.css';
 import SiteHeader from '../components/organisms/SiteHeader.astro';
 import SiteFooter from '../components/organisms/SiteFooter.astro';
 import type { Locale } from '../i18n/ui';
+import { altLocale, localePath } from '../i18n/ui';
 
 interface Props {
   locale: Locale;
@@ -14,8 +15,8 @@ interface Props {
 }
 
 const { locale, title, description, altUrl } = Astro.props;
-const altLocale: Locale = locale === 'es' ? 'en' : 'es';
-const homeUrl = locale === 'en' ? '/' : '/es/';
+const alt: Locale = altLocale(locale);
+const homeUrl = localePath(locale);
 const currentPath = Astro.url.pathname;
 ---
 
@@ -29,7 +30,7 @@ const currentPath = Astro.url.pathname;
     <meta name="theme-color" content="#0f1517" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="alternate" hreflang={altLocale} href={altUrl} />
+    <link rel="alternate" hreflang={alt} href={altUrl} />
     <link rel="alternate" hreflang={locale} href={currentPath} />
     <title>{title}</title>
   </head>
