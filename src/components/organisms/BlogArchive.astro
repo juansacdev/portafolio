@@ -17,8 +17,8 @@ const posts = (
   )
 ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const blogBase = locale === 'es' ? '/blog' : '/en/blog';
-const homeUrl = locale === 'es' ? '/' : '/en/';
+const blogBase = locale === 'en' ? '/blog' : '/es/blog';
+const homeUrl = locale === 'en' ? '/' : '/es/';
 ---
 
 <section class="blog-archive">

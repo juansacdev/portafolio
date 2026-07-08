@@ -15,7 +15,7 @@ interface Props {
 
 const { locale, title, description, altUrl } = Astro.props;
 const altLocale: Locale = locale === 'es' ? 'en' : 'es';
-const homeUrl = locale === 'es' ? '/' : '/en/';
+const homeUrl = locale === 'en' ? '/' : '/es/';
 const currentPath = Astro.url.pathname;
 ---
 

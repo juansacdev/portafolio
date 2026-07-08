@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   // Drafts get no page at all; unlisted and published are accessible.
   const posts = await getCollection(
     'blog',
-    ({ data }) => data.lang === 'es' && data.status !== 'draft'
+    ({ data }) => data.lang === 'en' && data.status !== 'draft'
   );
   return posts.map((post) => ({
     params: { slug: post.data.slug },
@@ -20,10 +20,10 @@ const { post } = Astro.props;
 ---
 
 <BaseLayout
-  locale="es"
+  locale="en"
   title={`${post.data.title} — ${identity.name}`}
   description={post.data.description}
-  altUrl={`/en/blog/${post.data.translationSlug}/`}
+  altUrl={`/es/blog/${post.data.translationSlug}/`}
 >
-  <BlogPost locale="es" post={post} />
+  <BlogPost locale="en" post={post} />
 </BaseLayout>
