@@ -1,6 +1,7 @@
 ---
 import '@fontsource-variable/public-sans';
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import SiteHeader from '../components/organisms/SiteHeader.astro';
 import SiteFooter from '../components/organisms/SiteFooter.astro';
 import type { Locale } from '../i18n/ui';
@@ -33,6 +34,7 @@ const currentPath = Astro.url.pathname;
     <link rel="alternate" hreflang={alt} href={altUrl} />
     <link rel="alternate" hreflang={locale} href={currentPath} />
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <body>
     <SiteHeader locale={locale} altUrl={altUrl} homeUrl={homeUrl} />
