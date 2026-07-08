@@ -25,8 +25,6 @@ export interface Hero {
   headline: string
   /** Intro paragraphs; supports **bold** / ==mark== / [link](url). */
   lede: string[]
-  /** Short focus chips under the lede. */
-  focus: string[]
 }
 
 export interface CaseStudyResult {
@@ -45,7 +43,6 @@ export interface CaseStudy {
   /** The headline result; supports **bold** markers. */
   result: string
   results: CaseStudyResult[]
-  tags: string[]
   /** Closing line; supports [link](url) via emphasize. */
   more: string
 }
@@ -56,15 +53,16 @@ export interface SkillGroup {
 }
 
 export interface ExperienceEntry {
-  company: string
   role: string
-  start: string // ISO date for <time datetime>
-  end: string
-  period: string // human-readable range
-  summary: string
-  /** Narrative paragraphs. Takes precedence over bullets when present. */
-  paragraphs?: string[]
-  bullets?: string[]
+  company: string
+  /** Industry/sector, omitted for consultancies where only the company name is shown. */
+  sector?: string
+  start: string // year, for <time datetime>
+  end: string // year, for <time datetime>
+  period: string // human-readable, year-only range
+  bullets: string[]
+  /** Optional closing note (e.g. press coverage). Supports [link](url) via emphasize. */
+  note?: string
 }
 
 /**
@@ -78,7 +76,6 @@ export type ContentStatus = 'draft' | 'unlisted' | 'published'
 export interface Project {
   name: string
   description: string[]
-  stack: string[]
   /** Source code repository. */
   repoUrl?: string
   /** Live deployment of the project. */
@@ -106,11 +103,10 @@ export const content: Record<Locale, LocalizedContent> = {
         'Trabajo **AI-first**, y eso va en dos vías. **Construyo con AI**: integro LLMs y agentes en mi flujo de trabajo para desarrollar. Y **construyo AI**: diseño productos AI-native —LLMs y agentes en el core— de la spec al eval, hasta producción.',
         'Antes fui founding engineer y tech lead en una fintech: parte del equipo que construyó sus stablecoins sobre Polygon y Celo. Movieron **+US$2,000M** sin un solo incidente.',
       ],
-      focus: ['Sistemas distribuidos', 'LLMs & AI/ML', 'Arquitectura de software'],
     },
     caseStudy: {
       title: 'Minteo — Stablecoin Settlement Layer',
-      role: 'Founding Software Engineer · Tech Lead · 2022–2026 · 3 stablecoins en producción',
+      role: 'Senior Software Engineer | Founding Team · 2022–2026 · 3 stablecoins en producción',
       intro:
         'La infraestructura de pagos con stablecoins para Latinoamérica. Fui parte del equipo —y lo lideré— que la construyó de cero.',
       problem:
@@ -124,46 +120,58 @@ export const content: Record<Locale, LocalizedContent> = {
         { value: '+US$300M', label: 'volumen en el mejor mes' },
         { value: '0', label: 'incidentes con el dinero' },
       ],
-      tags: ['Distributed Systems', 'Polygon', 'Celo', 'Node.js', 'Event Sourcing', 'Architecture'],
       more: 'La blockchain es pública, así que puedes [ver la auditoría on-chain →](https://copm.juansac.dev): cada cifra es verificable.',
     },
     experience: [
       {
-        company: 'Minteo · Fintech',
-        role: 'Founding Software Engineer – Tech Lead',
-        start: '2022-06',
-        end: '2026-06',
-        period: 'jun 2022 – jun 2026',
-        summary: 'Stablecoin Settlement Layer para Latinoamérica.',
-        paragraphs: [
-          'Fui parte del equipo que desarrolló las stablecoins **COPM, MXNM y BRLM** sobre múltiples chains como Polygon y Celo.',
-          'Nuestra misión era construir la infraestructura de pagos para Latinoamérica. Diseñamos y construimos los sistemas, los workflows y la arquitectura que movió dinero real: **más de US$300M** en el mejor mes y **más de US$2,000M** en total, en volumen transaccional.',
-          'El hito llegó a la prensa: [La República cubrió](https://www.larepublica.co/finanzas/como-hacer-transacciones-con-stablecoins-4221338) cuando el sistema superó los US$200M mensuales. Y como la blockchain es pública, [lo audité on-chain](https://copm.juansac.dev): cada cifra es verificable.',
+        role: 'Senior Software Engineer | Founding Team',
+        company: 'Minteo',
+        sector: 'Fintech',
+        start: '2022',
+        end: '2026',
+        period: '2022 – 2026',
+        bullets: [
+          'Lideré el diseño de la plataforma core de liquidación — on/off-ramps, dispersión de fondos, mint/burn, y el módulo de KYC/compliance bajo mandato regulatorio y auditorías externas mensuales.',
+          'Operé en producción una plataforma que liquidó más de USD $2B en volumen on-chain en Latinoamérica — con picos de más de USD $300M en un solo mes — soportando a más de 100,000 usuarios finales vía clientes B2B.',
+          'Diseñé la arquitectura multi-token y multi-país, y lideré la expansión a nuevas redes blockchain, habilitando un roadmap de seis stablecoins regionales sin reescribir el núcleo.',
+          'Lideré un equipo de cuatro a cinco ingenieros durante más de tres años, reportando directamente al CTO.',
+        ],
+        note: 'El hito llegó a la prensa: [La República cubrió](https://www.larepublica.co/finanzas/como-hacer-transacciones-con-stablecoins-4221338) cuando el sistema superó los US$200M mensuales. Y como la blockchain es pública, [lo audité on-chain](https://copm.juansac.dev): cada cifra es verificable.',
+      },
+      {
+        role: 'Software Engineer',
+        company: 'Cóndor Labs',
+        start: '2021',
+        end: '2022',
+        period: '2021 – 2022',
+        bullets: [
+          'Implementé una capa de caching con Redis sobre las consultas más pesadas de un producto SaaS B2B, reduciendo la latencia percibida en los endpoints de mayor tráfico.',
+          'Construí pipelines de CI/CD en GitHub Actions para los servicios backend, eliminando los despliegues manuales.',
         ],
       },
       {
-        company: 'Cóndor Labs · Software Consultancy',
-        role: 'Backend Developer',
-        start: '2021-12',
-        end: '2022-05',
-        period: 'dic 2021 – may 2022',
-        summary: 'Consultora de software colombiana para productos SaaS B2B.',
-        paragraphs: [
-          'Trabajé en el backend del producto SaaS B2B de un cliente externo: implementé la capa de **caching con Redis** sobre las queries más pesadas, reduciendo la latencia en los endpoints de mayor tráfico.',
-          'También construí los pipelines de **CI/CD en GitHub Actions**, eliminando los despliegues manuales del equipo, y elevé la cobertura de tests con pytest y Jest como precondición de cada release.',
+        role: 'Software Engineer',
+        company: 'Arvolution',
+        sector: 'Healthtech',
+        start: '2021',
+        end: '2022',
+        period: '2021 – 2022',
+        bullets: [
+          'Construí workflows ETL en Python sobre AWS Lambda que procesaban datos de incidentes laborales de plantas industriales, alimentando la analítica detrás de reportes regulatorios para clientes como Bavaria.',
+          'Implementé APIs GraphQL que exponen datos de incidentes y operaciones a los frontends del producto, sobre una capa de persistencia serverless orientada a eventos.',
         ],
       },
       {
-        company: 'Arvolution · HSE Tech',
-        role: 'Jr Backend Engineer',
-        start: '2021-06',
-        end: '2021-12',
-        period: 'jun 2021 – dic 2021',
-        summary:
-          'Inspecciones y gestión de incidentes HSE para la industria en Latinoamérica.',
-        paragraphs: [
-          'Trabajé con clientes industriales como **Bavaria (AB InBev)**: construí los workflows **ETL en Python sobre AWS Lambda** que procesaban la data de incidentes de seguridad reportados en planta, alimentando los reportes regulatorios y dashboards del producto.',
-          'También implementé las **APIs GraphQL** del producto, con DynamoDB y S3 como capa de persistencia event-driven.',
+        role: 'Software Engineer',
+        company: 'TuProp',
+        sector: 'Proptech',
+        start: '2020',
+        end: '2021',
+        period: '2020 – 2021',
+        bullets: [
+          'Ayudé a construir el MVP de la aplicación de punta a punta, en el frontend y en un backend GraphQL.',
+          'Integré la API de OpenStreetMap para habilitar mapas y geolocalización en la búsqueda de propiedades.',
+          'Construí web scrapers y pipelines ETL con Puppeteer para recolectar y poblar el catálogo de propiedades con nuevos listados.',
         ],
       },
     ],
@@ -174,7 +182,6 @@ export const content: Record<Locale, LocalizedContent> = {
           'Auditoría reproducible de la stablecoin que ayudé a construir en Minteo: 317,696 eventos Transfer escaneados directo de Polygon y Celo vía RPC, ~US$2,046 millones en volumen verificado contra la chain en vivo.',
           'Por NDA no puedo mostrar el código de la empresa — pero la blockchain es pública. Pipeline propio de scanning (sin indexers ni APIs de terceros), validación automatizada, charts SVG generados desde cero y la historia contada para cualquier público.',
         ],
-        stack: ['Node.js', 'Polygon', 'Celo', 'Data Engineering', 'Data Analysis', 'ETL'],
         repoUrl: 'https://github.com/juansacdev/copm-onchain-analysis',
         liveUrl: 'https://copm.juansac.dev',
         status: 'published',
@@ -185,7 +192,6 @@ export const content: Record<Locale, LocalizedContent> = {
           'Un sistema que captura gestos de Lengua de Señas Colombiana (LSC) con la cámara y los traduce a voz sintetizada. Sin intérprete humano de por medio.',
           'Pipeline de visión por computadora end-to-end: detección y tracking de manos en tiempo real, clasificación de gestos con CNNs entrenadas sobre vocabulario LSC, y text-to-speech para cerrar el loop de comunicación sordo ↔ oyente.',
         ],
-        stack: ['Python', 'TensorFlow', 'OpenCV', 'Computer Vision', 'CNNs'],
         status: 'draft',
       },
       {
@@ -194,35 +200,45 @@ export const content: Record<Locale, LocalizedContent> = {
           'Un ajedrez multijugador en tiempo real sin frameworks: vanilla JavaScript y WebSockets. Salas de dos jugadores con estado sincronizado entre clientes en milisegundos.',
           'Sistema turn-based con visibilidad selectiva de jugadas — cada jugador ve únicamente sus movimientos posibles cuando es su turno — y manejo elegante de desconexiones durante la partida.',
         ],
-        stack: ['JavaScript', 'WebSockets', 'Real-time'],
         status: 'draft',
       },
     ],
     skills: [
       {
-        area: 'AI engineering',
-        items: ['Prompt & context eng.', 'Evals', 'RAG', 'Specs & harnesses', 'AI Agents'],
+        area: 'Languages',
+        items: ['TypeScript', 'Python'],
       },
       {
-        area: 'Sistemas distribuidos',
-        items: ['Arquitectura', 'Event Driven', 'Event sourcing', 'Ledgers', "Temporal"],
+        area: 'Frameworks',
+        items: ['Fastify', 'FastAPI', 'React', 'Next.js', 'GraphQL'],
       },
       {
-        area: 'Stack',
-        items: ['Python', 'TypeScript', 'PostgreSQL', 'DynamoDB', 'GraphQL', 'REST APIs'],
+        area: 'Cloud & Infra',
+        items: ['AWS', 'Kubernetes', 'Docker', 'Terraform', 'CI/CD pipelines'],
       },
       {
-        area: 'Infraestructura',
-        items: ['AWS', 'Docker', 'Kubernetes', 'Terraform'],
+        area: 'Async Processing',
+        items: ['Temporal.io', 'Message Queues'],
+      },
+      {
+        area: 'Databases',
+        items: ['PostgreSQL', 'DynamoDB', 'Redis'],
+      },
+      {
+        area: 'Architecture',
+        items: ['Event-driven', 'Serverless'],
+      },
+      {
+        area: 'AI',
+        items: ['LLMs', 'AI Agents', 'LangGraph', 'LangFuse'],
       },
     ],
     about: [
       'Me llamo Juan Sebastián Agudelo, pero puedes llamarme Juanse. ==Empecé a programar a los 19 años, haciendo un pivot a mi vida==: era estudiante becado de finanzas.',
-      '==La curiosidad ha marcado mi vida desde siempre==, y fue lo que me motivó a aprender programación de manera autodidacta.',
-      'He trabajado para startups y grandes compañías. Entre mis éxitos: fui parte de —y lideré— un equipo pequeño (4~6 devs) que desarrolló una stablecoin (**COPM**) con peg 1:1 sobre las redes de Polygon y Celo. En su mejor mes movió **más de US$300M** en volumen transaccional; en total, **más de $2B**. Sin ningún incidente y de manera segura.',
+      'La curiosidad ha marcado mi vida desde siempre, y fue lo que me motivó a aprender programación de manera autodidacta.',
       'Escribo sobre lo que aprendo en el camino, porque *[enseñar es aprender dos veces](https://es.wikiquote.org/wiki/Joseph_Joubert)*.',
       '==Creo profundamente en la educación continua==, sea de la forma que sea —formal, en línea o autodidacta—, como manera de seguir creciendo a nivel personal y profesional.',
-      'Creo firmemente en que ==el futuro siempre será mejor==. Es la única manera de construirlo.',
+      'Creo firmemente en que el futuro siempre será mejor. Es la única manera de construirlo.',
       '*Muss es sein?* *Es muss sein!*',
     ],
   },
@@ -236,11 +252,10 @@ export const content: Record<Locale, LocalizedContent> = {
         'I work **AI-first**, and that goes two ways. **I build with AI**: I bring LLMs and agents into my workflow to develop. And **I build AI**: I design AI-native products —LLMs and agents at the core— from spec to eval, all the way to production.',
         'Before that I was a founding engineer and tech lead at a fintech: part of the team that built its stablecoins on Polygon and Celo. They moved **+US$2,000M** without a single incident.',
       ],
-      focus: ['Distributed systems', 'LLMs & AI/ML', 'Software architecture'],
     },
     caseStudy: {
       title: 'Minteo — Stablecoin Settlement Layer',
-      role: 'Founding Software Engineer · Tech Lead · 2022–2026 · 3 stablecoins in production',
+      role: 'Senior Software Engineer | Founding Team · 2022–2026 · 3 stablecoins in production',
       intro:
         'The stablecoin payment infrastructure for Latin America. I was part of the team —and led it— that built it from scratch.',
       problem:
@@ -254,46 +269,58 @@ export const content: Record<Locale, LocalizedContent> = {
         { value: '+US$300M', label: 'volume in the best month' },
         { value: '0', label: 'money incidents' },
       ],
-      tags: ['Distributed Systems', 'Polygon', 'Celo', 'Node.js', 'Event Sourcing', 'Architecture'],
       more: 'The blockchain is public, so you can [see the on-chain audit →](https://copm.juansac.dev): every figure is verifiable.',
     },
     experience: [
       {
-        company: 'Minteo · Fintech',
-        role: 'Founding Software Engineer – Tech Lead',
-        start: '2022-06',
-        end: '2026-06',
-        period: 'Jun 2022 – Jun 2026',
-        summary: 'Stablecoin Settlement Layer for Latin America.',
-        paragraphs: [
-          'I was part of the team that built the **COPM, MXNM, and BRLM** stablecoins on multiple chains such as Polygon and Celo.',
-          'Our mission was to build the payment infrastructure for Latin America. We designed and built the systems, workflows, and architecture that moved real money: **over US$300M** in the best month and **over US$2,000M** in total transactional volume.',
-          'The milestone reached the press: [La República covered it](https://www.larepublica.co/finanzas/como-hacer-transacciones-con-stablecoins-4221338) when the system crossed US$200M monthly. And since the blockchain is public, [I audited it on-chain](https://copm.juansac.dev): every figure is verifiable.',
+        role: 'Senior Software Engineer | Founding Team',
+        company: 'Minteo',
+        sector: 'Fintech',
+        start: '2022',
+        end: '2026',
+        period: '2022 – 2026',
+        bullets: [
+          'Led the design of the core settlement platform — on/off-ramps, fund disbursement, mint/burn, and the KYC/compliance module built under regulatory mandate and monthly external audits.',
+          'Operated in production a platform that settled over USD $2B in on-chain volume across Latin America — peaking at over USD $300M in a single month — supporting more than 100,000 end users through B2B clients.',
+          'Designed the multi-token, multi-country architecture and led the expansion to new blockchain networks, enabling a roadmap of six regional stablecoins without rewriting the core.',
+          'Led a team of four to five engineers for over three years, reporting directly to the CTO.',
+        ],
+        note: 'The milestone reached the press: [La República covered it](https://www.larepublica.co/finanzas/como-hacer-transacciones-con-stablecoins-4221338) when the system crossed US$200M monthly. And since the blockchain is public, [I audited it on-chain](https://copm.juansac.dev): every figure is verifiable.',
+      },
+      {
+        role: 'Software Engineer',
+        company: 'Cóndor Labs',
+        start: '2021',
+        end: '2022',
+        period: '2021 – 2022',
+        bullets: [
+          'Implemented a Redis caching layer over the heaviest database queries of a B2B SaaS product, cutting perceived latency on the highest-traffic endpoints.',
+          "Built CI/CD pipelines on GitHub Actions for the client's backend services, eliminating manual deploys and standardizing the release cycle of a five-engineer team.",
         ],
       },
       {
-        company: 'Cóndor Labs · Software Consultancy',
-        role: 'Backend Developer',
-        start: '2021-12',
-        end: '2022-05',
-        period: 'Dec 2021 – May 2022',
-        summary: 'Colombian software consultancy building B2B SaaS products.',
-        paragraphs: [
-          "I worked on the backend of an external client's B2B SaaS product: I implemented the **Redis caching layer** over the heaviest queries, cutting latency on the highest-traffic endpoints.",
-          'I also built the **CI/CD pipelines on GitHub Actions**, eliminating the team’s manual deploys, and raised test coverage with pytest and Jest as a precondition for every release.',
+        role: 'Software Engineer',
+        company: 'Arvolution',
+        sector: 'Healthtech',
+        start: '2021',
+        end: '2022',
+        period: '2021 – 2022',
+        bullets: [
+          'Built Python ETL workflows on AWS Lambda processing workplace-incident data from industrial plants, feeding the analytics behind regulatory reports for clients such as Bavaria.',
+          "Implemented GraphQL APIs exposing incident and operational data to the product's frontends, backed by a serverless, event-driven persistence layer.",
         ],
       },
       {
-        company: 'Arvolution · HSE Tech',
-        role: 'Jr Backend Engineer',
-        start: '2021-06',
-        end: '2021-12',
-        period: 'Jun 2021 – Dec 2021',
-        summary:
-          'Inspections and HSE incident management for industry across Latin America.',
-        paragraphs: [
-          'I worked with industrial clients such as **Bavaria (AB InBev)**: I built the **Python ETL workflows on AWS Lambda** that processed safety-incident data reported from plants, feeding the product’s regulatory reports and dashboards.',
-          'I also implemented the product’s **GraphQL APIs**, backed by DynamoDB and S3 as the event-driven persistence layer.',
+        role: 'Software Engineer',
+        company: 'TuProp',
+        sector: 'Proptech',
+        start: '2020',
+        end: '2021',
+        period: '2020 – 2021',
+        bullets: [
+          "Helped build the company's application MVP end-to-end, contributing across the frontend and a GraphQL backend to launch the product's first version.",
+          'Integrated the OpenStreetMap API to power maps and geolocation in the property search experience.',
+          'Built web scrapers and ETL pipelines with Puppeteer to collect and populate listings for the property catalog.',
         ],
       },
     ],
@@ -304,7 +331,6 @@ export const content: Record<Locale, LocalizedContent> = {
           'Reproducible audit of the stablecoin I helped build at Minteo: 317,696 Transfer events scanned straight from Polygon and Celo via RPC, ~US$2,046 million in volume verified against the live chain.',
           "Under NDA I can't show the company's code — but the blockchain is public. Custom scanning pipeline (no indexers, no third-party APIs), automated validation, SVG charts built from scratch, and the story told for any audience.",
         ],
-        stack: ['Node.js', 'Polygon', 'Celo', 'Data Engineering', 'Data Analysis', 'ETL'],
         repoUrl: 'https://github.com/juansacdev/copm-onchain-analysis',
         liveUrl: 'https://copm.juansac.dev',
         status: 'published',
@@ -315,7 +341,6 @@ export const content: Record<Locale, LocalizedContent> = {
           'A system that captures Colombian Sign Language (LSC) gestures through the camera and translates them into synthesized speech. No human interpreter required.',
           'End-to-end computer vision pipeline: real-time hand detection and tracking, gesture classification with CNNs trained on LSC vocabulary, and text-to-speech to close the deaf ↔ hearing communication loop.',
         ],
-        stack: ['Python', 'TensorFlow', 'OpenCV', 'Computer Vision', 'CNNs'],
         status: 'draft',
       },
       {
@@ -324,31 +349,45 @@ export const content: Record<Locale, LocalizedContent> = {
           'A real-time multiplayer chess game with no frameworks: vanilla JavaScript and WebSockets. Two-player rooms with state synchronized across clients in milliseconds.',
           'Turn-based system with selective move visibility — each player only sees their own legal moves on their turn — and graceful disconnection handling throughout the match.',
         ],
-        stack: ['JavaScript', 'WebSockets', 'Real-time'],
         status: 'draft',
       },
     ],
     skills: [
       {
-        area: 'AI engineering',
-        items: ['Prompt & context eng.', 'Evals', 'RAG', 'Specs & harnesses', 'AI Agents'],
+        area: 'Languages',
+        items: ['TypeScript', 'Python'],
       },
       {
-        area: 'Distributed systems',
-        items: ['Architecture', 'Event Driven', 'Event sourcing', 'Ledgers', "Temporal"],
+        area: 'Frameworks',
+        items: ['Fastify', 'FastAPI', 'React', 'Next.js', 'GraphQL'],
       },
       {
-        area: 'Stack',
-        items: ['Python', 'TypeScript', 'GraphQL', 'PostgreSQL', 'DynamoDB', 'Docker', 'Kubernetes', 'Terraform'],
+        area: 'Cloud & Infra',
+        items: ['AWS', 'Kubernetes', 'Docker', 'Terraform', 'CI/CD pipelines'],
+      },
+      {
+        area: 'Async Processing',
+        items: ['Temporal.io', 'Message Queues'],
+      },
+      {
+        area: 'Databases',
+        items: ['PostgreSQL', 'DynamoDB', 'Redis'],
+      },
+      {
+        area: 'Architecture',
+        items: ['Event-driven', 'Serverless'],
+      },
+      {
+        area: 'AI',
+        items: ['LLMs', 'AI Agents', 'LangGraph', 'LangFuse'],
       },
     ],
     about: [
       "My name is Juan Sebastián Agudelo, but you can call me Juanse. ==I started programming at 19, pivoting my whole life==: I was a finance student on a scholarship.",
-      "==Curiosity has shaped my life for as long as I can remember==, and it is what pushed me to learn programming on my own.",
-      'I have worked for startups and large companies. Among my wins: I was part of —and led— a small team (4~6 devs) that built a stablecoin (**COPM**) with a 1:1 peg on Polygon and Celo. In its best month it moved **over US$300M** in transactional volume; in total, **over $2B**. Without a single incident, and securely.',
+      'Curiosity has shaped my life for as long as I can remember, and it is what pushed me to learn programming on my own.',
       'I write about what I learn along the way, because *[to teach is to learn twice](https://en.wikiquote.org/wiki/Joseph_Joubert)*.',
       '==I deeply believe in continuous education== in every form —formal, online, or self-taught— as the way to keep growing both personally and professionally.',
-      'I firmly believe ==the future will always be better==. It is the only way to build it.',
+      'I firmly believe the future will always be better. It is the only way to build it.',
       '*Muss es sein?* *Es muss sein!*',
     ],
   },
