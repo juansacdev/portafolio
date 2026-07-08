@@ -52,15 +52,6 @@ export interface SkillGroup {
   items: string[]
 }
 
-/** Skills rendered with the accent color in the About skills list. */
-export const coreSkills: ReadonlySet<string> = new Set([
-  'TypeScript',
-  'Python',
-  'Temporal.io',
-  'AWS',
-  'AI Agents',
-])
-
 export interface ExperienceEntry {
   role: string
   company: string

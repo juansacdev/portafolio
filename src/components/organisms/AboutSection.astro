@@ -3,7 +3,7 @@ import SectionTitle from '../atoms/SectionTitle.astro';
 import Avatar from '../atoms/Avatar.astro';
 import type { Locale } from '../../i18n/ui';
 import { t, anchors } from '../../i18n/ui';
-import { content, identity, coreSkills } from '../../data/profile';
+import { content, identity } from '../../data/profile';
 import { emphasize } from '../../utils/emphasize';
 
 interface Props {
@@ -44,18 +44,7 @@ const cvHref =
             skills.map((group) => (
               <div class="skill-row">
                 <dt>{group.area}</dt>
-                <dd>
-                  {group.items.map((item, i) => (
-                    <span class:list={['skill-item', { core: coreSkills.has(item) }]}>
-                      {item}
-                      {i < group.items.length - 1 && (
-                        <span class="sep" aria-hidden="true">
-                          {' · '}
-                        </span>
-                      )}
-                    </span>
-                  ))}
-                </dd>
+                <dd>{group.items.join(' · ')}</dd>
               </div>
             ))
           }
@@ -149,15 +138,6 @@ const cvHref =
     font-size: 0.8125rem;
     line-height: 1.7;
     color: var(--color-text-muted);
-  }
-
-  .skill-item.core {
-    color: var(--color-accent);
-    font-weight: 600;
-  }
-
-  .sep {
-    color: var(--color-line);
   }
 
   .cv-btn {
