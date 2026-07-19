@@ -37,7 +37,7 @@ const hasBlog = publishedPosts.length > 0;
 
     <nav aria-label={t(locale, 'nav.label')}>
       <ul class="nav-list">
-        <li><a href={`${homeUrl}#${a.caseStudy}`}>{t(locale, 'nav.caseStudy')}</a></li>
+        {/* <li><a href={`${homeUrl}#${a.caseStudy}`}>{t(locale, 'nav.caseStudy')}</a></li> */}
         <li><a href={`${homeUrl}#${a.experience}`}>{t(locale, 'nav.experience')}</a></li>
         {hasProjects && (
           <li><a href={`${homeUrl}#${a.projects}`}>{t(locale, 'nav.projects')}</a></li>
