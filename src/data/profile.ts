@@ -58,7 +58,7 @@ export interface ExperienceEntry {
   /** Industry/sector, omitted for consultancies where only the company name is shown. */
   sector?: string
   start: string // year, for <time datetime>
-  end: string // year, for <time datetime>
+  end: string // year, for <time datetime>; the current year while the role is ongoing
   period: string // human-readable, year-only range
   bullets: string[]
   /** Optional closing note (e.g. press coverage). Supports [link](url) via emphasize. */
@@ -124,8 +124,20 @@ export const content: Record<Locale, LocalizedContent> = {
     },
     experience: [
       {
+        role: 'AI/Product Engineer',
+        company: 'Zabio',
+        start: '2026',
+        end: '2026',
+        period: '2026 – Presente',
+        bullets: [
+          'Integré LLMs y agentes de AI en los procesos de onboarding y compliance (KYC).',
+          'Asumí el desarrollo de una aplicación móvil multiplataforma tras la fusión entre Minteo y Zabio.',
+          'Construí automatizaciones con agentes de AI para eliminar pasos manuales en procesos de la compañía.',
+        ],
+      },
+      {
         role: 'Senior Software Engineer | Founding Team',
-        company: 'Minteo',
+        company: 'Minteo (adquirida por Zabio)',
         sector: 'Fintech',
         start: '2022',
         end: '2026',
@@ -158,7 +170,7 @@ export const content: Record<Locale, LocalizedContent> = {
         period: '2021 – 2022',
         bullets: [
           'Construí workflows ETL en Python sobre AWS Lambda que procesaban datos de incidentes laborales de plantas industriales, alimentando la analítica detrás de reportes regulatorios para clientes como Bavaria.',
-          'Implementé APIs GraphQL que exponen datos de incidentes y operaciones a los frontends del producto, sobre una capa de persistencia serverless orientada a eventos.',
+          'Implementé APIs GraphQL que exponían datos de incidentes y operaciones a los frontends del producto, sobre una capa de persistencia serverless orientada a eventos.',
         ],
       },
       {
@@ -273,8 +285,20 @@ export const content: Record<Locale, LocalizedContent> = {
     },
     experience: [
       {
+        role: 'AI/Product Engineer',
+        company: 'Zabio',
+        start: '2026',
+        end: '2026',
+        period: '2026 – Present',
+        bullets: [
+          'Integrated LLMs and AI agents into the onboarding and compliance (KYC) processes.',
+          'Owned the development of a cross-platform mobile app following the Minteo–Zabio merger.',
+          'Built automations with AI agents to remove manual steps from company processes.',
+        ],
+      },
+      {
         role: 'Senior Software Engineer | Founding Team',
-        company: 'Minteo',
+        company: 'Minteo (acquired by Zabio)',
         sector: 'Fintech',
         start: '2022',
         end: '2026',
