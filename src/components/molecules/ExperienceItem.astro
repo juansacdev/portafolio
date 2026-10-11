@@ -18,7 +18,9 @@ const { entry } = Astro.props;
   </header>
 
   <p class="company-line">
-    {entry.sector ? `${entry.company} – ${entry.sector}` : entry.company}
+    {entry.company}
+    {entry.companyNote && <span class="company-note">({entry.companyNote})</span>}
+    {entry.sector && `– ${entry.sector}`}
   </p>
 
   <ul class="bullets">
@@ -94,6 +96,10 @@ const { entry } = Astro.props;
     margin: 0 0 0.85rem;
     color: var(--color-text-muted);
     font-size: 0.95rem;
+  }
+
+  .company-note {
+    color: var(--color-accent);
   }
 
   .bullets {

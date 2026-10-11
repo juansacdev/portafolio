@@ -55,6 +55,8 @@ export interface SkillGroup {
 export interface ExperienceEntry {
   role: string
   company: string
+  /** Short remark shown in parentheses after the company name, in the accent color (e.g. an acquisition). */
+  companyNote?: string
   /** Industry/sector, omitted for consultancies where only the company name is shown. */
   sector?: string
   start: string // year, for <time datetime>
@@ -126,6 +128,7 @@ export const content: Record<Locale, LocalizedContent> = {
       {
         role: 'AI/Product Engineer',
         company: 'Zabio',
+        sector: 'Fintech',
         start: '2026',
         end: '2026',
         period: '2026 – Presente',
@@ -137,7 +140,8 @@ export const content: Record<Locale, LocalizedContent> = {
       },
       {
         role: 'Senior Software Engineer | Founding Team',
-        company: 'Minteo (adquirida por Zabio)',
+        company: 'Minteo',
+        companyNote: 'Adquirida por Zabio',
         sector: 'Fintech',
         start: '2022',
         end: '2026',
@@ -287,6 +291,7 @@ export const content: Record<Locale, LocalizedContent> = {
       {
         role: 'AI/Product Engineer',
         company: 'Zabio',
+        sector: 'Fintech',
         start: '2026',
         end: '2026',
         period: '2026 – Present',
@@ -298,7 +303,8 @@ export const content: Record<Locale, LocalizedContent> = {
       },
       {
         role: 'Senior Software Engineer | Founding Team',
-        company: 'Minteo (acquired by Zabio)',
+        company: 'Minteo',
+        companyNote: 'Acquired by Zabio',
         sector: 'Fintech',
         start: '2022',
         end: '2026',
