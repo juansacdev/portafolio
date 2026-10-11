@@ -55,9 +55,13 @@ Out of scope: the visual redesign itself (proposal only, not authorized for impl
 
 ## Progress / evidence
 
-- **T1** — commit `7082a0d` (`feat(experience): add Zabio role and mark Minteo as acquired`). `pnpm build` passed (6 pages). Built `dist/index.html` contains `AI/Product Engineer`, `2026 – Present`, `Minteo (acquired by Zabio) – Fintech`; `dist/es/index.html` contains `AI/Product Engineer`, `2026 – Presente`, `Minteo (adquirida por Zabio) – Fintech`, `exponían`. Review assessment (base `114de9e`, untracked excluded): medium, `under_budget`, no review due.
-- **T2** — commit `bc40c9b` (`chore(cv): update downloadable CVs with Zabio role`). SHA-1 match with source: EN `bc5d89d2…`, ES `310e90a1…`. Hrefs in `AboutSection.astro` untouched (same filenames).
-- **T3** — commit `7d25424` (`chore(skills): add landing-page-design skill`). `cmp` against the upstream download: identical, 16528 bytes. Content reviewed before install: design guidance only, no commands or tool instructions.
+Commits are identified by subject: the branch is merged by rebase, which rewrites hashes.
+
+- **T1** — commit `Add Zabio role and mark Minteo as acquired`. `pnpm build` passed (6 pages). Built `dist/index.html` contains `AI/Product Engineer`, `2026 – Present`, `Minteo (acquired by Zabio) – Fintech`; `dist/es/index.html` contains `AI/Product Engineer`, `2026 – Presente`, `Minteo (adquirida por Zabio) – Fintech`, `exponían`. Review assessment (base `114de9e`, untracked excluded): medium, `under_budget`, no review due.
+- **T2** — commit `Update downloadable CVs with Zabio role`. SHA-1 match with source: EN `bc5d89d2…`, ES `310e90a1…`. Hrefs in `AboutSection.astro` untouched (same filenames).
+- **T3** — commit `Add landing-page-design skill`. `cmp` against the upstream download: identical, 16528 bytes. Content reviewed before install: design guidance only, no commands or tool instructions.
+
+Review: assessment over the branch from `114de9e` was medium, `slice_budget_reached` (507 lines, 403 of them the vendored skill file). The user declined the review for this candidate (`declined_this_candidate`, target `sha256:3ed02bfa…`); no review ran. Verification of record is the writer self-check above.
 
 Not run: no automated tests exist in this repo, so no RED/GREEN evidence. No visual check in a browser.
 
